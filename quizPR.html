@@ -33,7 +33,7 @@
 </head>
 <body>
 
-  <h1 id="questionText">Municipio 1: Identifique el municipio resaltado</h1>
+  <h1 id="questionText">Imagén 1: Identifique el municipio resaltado</h1>
   <img id="quizImage" src="" alt="Map Highlight"><br><br>
 
   <div id="options">
@@ -83,7 +83,7 @@
 
     function loadQuestion() {
       const q = questions[current];
-      document.getElementById('questionText').textContent = `Municipio ${current + 1}: Identifique el municipio resaltado`;
+      document.getElementById('questionText').textContent = `Imagén ${current + 1}: Identifique el municipio resaltado`;
       document.getElementById('quizImage').src = q.image;
 
       const incorrect = shuffle(municipios.filter(m => m !== q.correct)).slice(0, 3);
