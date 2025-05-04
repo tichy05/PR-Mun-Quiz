@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>  
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="viewport" content="width=device-width, initial-scale=2.0">
  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta charset="UTF-8">
   <title>Quiz Municipios de Puerto Rico</title>
@@ -12,13 +12,13 @@
     #options {
   	display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* optional spacing between buttons */
+  gap: 1px; /* optional spacing between buttons */
   max-width: 300px; /* optional, controls line wrap based on width */
   Margin:0px auto; /* centers and adds top space. */
 }
 
   #options button {
-  flex: 1 1 calc(50% - 10px); /* 2 per row, minus gap */
+  flex: 1 1 calc(50% - 1px); /* 2 per row, minus gap */
   box-sizing: border-box;
   Padding: 10px;
 }
@@ -33,7 +33,7 @@
 </head>
 <body>
 
-  <h1 id="questionText">Municipio 1: Identifique el municipio resaltado</h1>
+  <h1 id="questionText">Imagen 1: Identifique el municipio resaltado</h1>
   <img id="quizImage" src="" alt="Map Highlight"><br><br>
 
   <div id="options">
@@ -86,7 +86,7 @@
 
     function loadQuestion() {
       const q = questions[current];
-      document.getElementById('questionText').textContent = `Municipio ${current + 1}: Identifique el municipio resaltado`;
+      document.getElementById('questionText').textContent = `Imagen ${current + 1}: Identifique el municipio resaltado`;
       document.getElementById('quizImage').src = q.image;
 
       const incorrect = shuffle(municipios.filter(m => m !== q.correct)).slice(0, 3);
