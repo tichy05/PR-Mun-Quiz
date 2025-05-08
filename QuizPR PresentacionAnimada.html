@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta charset="UTF-8">
+  <title>Quiz Municipios de Puerto Rico</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin: 0; 
+    background-color: #AF8C4C; }
+  img { width: 50%; height:auto; } 
+ 
+
+    .control-btn {
+      background-color: #2935b9;
+      color: white;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    .control-btn:hover {
+      background-color: #0056b3;
+    }
+
+    #objectName {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Presentación animada</h1>
+  <div id="objectName">---</div>
+  <img id="objectImage" src="blank.png" alt="Object Image">
+  <div>
+    <button id="startBtn" class="control-btn">Comenzar</button>
+    <button id="replayBtn" class="control-btn">Volver a ver</button>
+  </div>
+
+  <script>
+    const objects = [
+      "Adjuntas","Aguada","Aguadilla","Aguas Buenas","Aibonito","Arecibo","Arroyo","Añasco",
+      "Barceloneta","Barranquitas","Bayamón","Cabo Rojo","Caguas","Camuy","Canóvanas","Carolina",
+      "Cataño","Cayey","Ceiba","Ciales","Cidra","Coamo","Comerío","Corozal","Culebra","Dorado",
+"Fajardo","Florida","Guayama","Guayanilla","Guaynabo","Gurabo","Guánica","Hatillo","Hormigueros", "Humacao","Isabela","Jayuya","Juana Díaz","Juncos","Lajas","Lares","Las Marías","Las Piedras",
+      "Loiza","Luquillo","Manatí","Maricao","Maunabo","Mayagüez","Moca","Morovis","Naguabo",
+      "Naranjito","Orocovis","Patillas","Peñuelas","Ponce","Quebradillas","Rincón","Rio Grande",
+      "Sabana Grande","Salinas","San Germán","San Juan","San Lorenzo","San Sebastián","Santa Isabel","Toa Alta","Toa Baja","Trujillo Alto","Utuado","Vega Alta","Vega Baja","Vieques","Villalba","Yabucoa","Yauco"
+
+    ]; 
+
+    const image = document.getElementById('objectImage');
+    const nameDisplay = document.getElementById('objectName');
+    const startBtn = document.getElementById('startBtn');
+    const replayBtn = document.getElementById('replayBtn');
+
+    let currentIndex = 0;
+    let intervalId = null;
+
+    function showNextObject() {
+      if (currentIndex < objects.length) {
+        const currentObj = objects[currentIndex];
+        image.src = currentObj + '.png';
+        nameDisplay.textContent = currentObj;
+        currentIndex++;
+      } else {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    }
+
+    function startSlideshow() {
+      if (intervalId) return;
+      intervalId = setInterval(showNextObject, 3000);
+    }
+
+    function replaySlideshow() {
+      clearInterval(intervalId);
+      intervalId = null;
+      currentIndex = 0;
+      image.src = 'blank.png';
+      nameDisplay.textContent = "---";
+      startSlideshow();
+    }
+
+    startBtn.addEventListener('click', startSlideshow);
+    replayBtn.addEventListener('click', replaySlideshow);
+  </script>
+</body>
+</html>
+
