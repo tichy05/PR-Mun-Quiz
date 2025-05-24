@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta charset="UTF-8"> 
+  <title>HTML Grid Menu Index</title> 
+  <style> 
+    body  { 
+      font-family: Arial, sans-serif; 
+      padding: 40px; 
+      background-color: #AF8C4C; 
+     } 
+      img { width: 50%; height:auto; background-color: #AF8C4C;  }
+    .grid-menu  { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+      gap: 20px; 
+      max-width: 400px; 
+      margin: 150px auto; /* Buttons origin */
+     } 
+    .grid-menu button  { 
+      padding: 20px; 
+      background-color: #2935b9; 
+      color: white; 
+      border: none; 
+      border-radius: 8px; 
+      font-size: 16px; 
+      cursor: pointer; 
+      transition: background-color 0.3s ease; 
+     } 
+    .grid-menu button:hover  { 
+      background-color: #2980b9; 
+     } 
+  </style> 
+</head> 
+<body> 
+ 
+  <h1 style="text-align:center;">Aprende a reconocer los municipios de Puerto Rico</h1> 
+ 
+  <div class="grid-menu"> 
+ <button onclick="location.href='QuizPRlocatemuni.html'">Por municipio</button> 
+ <button onclick="location.href='PP Main Menu.html'">Ayuda para memorizar</button>
+ <button onclick="location.href='QuizMenu.html'">Prueba tus conocimientos</button> 
+ <button onclick="location.href=''"> </button> 
+ <button onclick="location.href='QuizPRimagewithnames.html'">Mapa de PR con nombres</button> 
+ <button onclick="location.href='QuizPRimagenonames.html'">Mapa de PR sin nombres</button> 
+
+
+ 
+    <!-- Add more buttons as needed --> 
+  </div> 
+ 
+ <h1 style="font-size:100%;text-align:Right;">Todos los mapas a continuación son cortesía de Paintmaps.com</
+
+</body> 
+</html> 
