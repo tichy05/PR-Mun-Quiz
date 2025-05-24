@@ -1,0 +1,134 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Ayuda a memorizar V6</title>
+  <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Ayuda de memoria</h1>
+  </div>
+  <div class="divline"></div>
+
+  <div class="main-container">
+    <div class="sidebar">
+      <div id="objectName"></div>
+    </div>
+    
+    <div class="content">
+      <img id="objectImage" src="Comenzar.png" alt="Imagen del objeto actual" class="content-image">
+    </div> 
+  </div>
+
+  <div class="footer"></div>
+  <div class="footer-content">
+    <button id="startBtn" class="control-btn" type="button">Comenzar / seguir</button>
+    <button id="replayBtn" class="control-btn" type="button">Volver a ver</button>
+    <button id="volvermenu" class="control-btn" type="button" onclick="window.location.href='PP Main Menu.html'">Menu principal</button> 
+    <button id="stopBtn" class="control-btn" type="button">Detener</button>
+    <button class="speed-btn" type="button" onclick="gotosetspeed1()">Mas Lento</button>
+    <button class="speed-btn" type="button" onclick="gotosetspeed2()">Normal</button>
+    <button class="speed-btn" type="button" onclick="gotosetspeed3()">Mas Rápido</button>
+  </div>
+
+  <script>
+    let myspeed = 3500; // default speed
+    let intervalId = null;
+    let currentIndex = 0;
+    const maxlines = 11;
+
+    const objects = [
+      "PP Yauco",
+      "PP Guayanilla",
+      "PP Peñuelas",
+      "PP Ponce",
+      "PP Juana Diaz y Santa Isabel",
+      "PP Villalba y Coamo",
+      "PP Salinas",
+      "PP Guayama",
+      "PP Arroyo",
+      "PP Patillas",
+      "PP Patillas"
+    ];
+
+    const objectName = [
+      "Al Sur tenemos a <span class='hi-red'>Yauco</span> y su forma es una Y",
+      "No sé si hay guayos, pero le sigue <span class='hi-red'>Guayanilla</span>",
+      "No sé si hay peñas, pero el próximo es <span class='hi-red'>Peñuelas</span>",
+      "Y entramos al mas grande, <span class='hi-red'>Ponce</span>",
+      "A su derecha están las señoras <span class='hi-red'>Juana Díaz y Santa Isabel</span>",
+      "y encima de ellas, <span class='hi-red'>Villa-Alba y Co</span>-mo-te-<span class='hi-red'>amo</span>",
+      "Les sigue el pueblo mas salado, <span class='hi-red'>Salinas</span>",
+      "Llegamos al otro guayo, <span class='hi-red'>Guayama</span>",
+      "y nos refrescamos en el <span class='hi-red'>Arroyo</span>",
+      "con el agua hasta las <span class='hi-red'>Patillas</span>",
+      "Y terminamos con la Región Sur"
+    ];
+
+    const image = document.getElementById('objectImage');
+    const nameDisplay = document.getElementById('objectName');
+    const startBtn = document.getElementById('startBtn');
+    const replayBtn = document.getElementById('replayBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    
+    function showNextObject() {
+      if (currentIndex < objects.length) {
+        image.src = objects[currentIndex] + '.png';
+
+        const currentText = nameDisplay.innerHTML.trim();
+        const lines = currentText === "" ? [] : currentText.split('<br>');
+
+        if (lines.length >= maxlines) {
+          nameDisplay.innerHTML = objectName[currentIndex];
+        } else {
+          nameDisplay.innerHTML += "<br>" + objectName[currentIndex];
+        }
+
+        currentIndex++;
+      } else {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    }
+
+    function startSlideshow() {
+      if (intervalId) return;
+      intervalId = setInterval(showNextObject, myspeed);
+    }
+
+    function stopSlideshow() {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+
+    function replaySlideshow() {
+      clearInterval(intervalId);
+      intervalId = null;
+      currentIndex = 0;
+      image.src = 'Instrucciones.png';
+      nameDisplay.innerHTML = "";
+      startSlideshow();
+    }
+
+    function resetSlideshowWithSpeed(speed) {
+      myspeed = speed;
+      if (intervalId) {
+        stopSlideshow();
+        startSlideshow();
+      }
+    }
+
+    function gotosetspeed1() { resetSlideshowWithSpeed(5000); }
+    function gotosetspeed2() { resetSlideshowWithSpeed(3500); }
+    function gotosetspeed3() { resetSlideshowWithSpeed(2000); }
+
+    startBtn.addEventListener('click', startSlideshow);
+    replayBtn.addEventListener('click', replaySlideshow);
+    stopBtn.addEventListener('click', stopSlideshow);
+  </script>
+</body>
+</html>

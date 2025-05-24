@@ -1,0 +1,170 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>PP Region Este V8</title>
+  <link rel="stylesheet" href="PP Regions styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Memorizar Región Este</h1>
+  </div>
+  <div class="divline"></div>
+
+  <div class="main-container">
+    <div class="sidebar">
+      <div id="objectName"></div>
+    </div>
+    
+    <div class="content">
+      <img id="objectImage" src="Comenzar.png" alt="Obj-image" class="content-image">
+    </div> 
+  </div>
+
+  <div class="footer"></div>
+  <div class="footer-content">
+ 
+   <button id="startBtn" class="symbol-btn" type="button">&#9658;</button>
+   <button id="replayBtn" class="symbol-btn" type="button">&#8634;</button>
+   <button id="stopBtn" class="symbol-btn" type="button">&#9208;</button>
+   <button id="volvermenu" class="control-btn" onclick="window.location.href='PP Main Menu.html'">Menu principal</button> 
+   <button class="speed-btn" type="button" onclick="gotosetspeed1()">&#8722;</button>
+   <button class="speed2-btn" type="button" onclick="gotosetspeed2()">Velocidad Normal</button>
+   <button class="speed-btn" type="button" onclick="gotosetspeed3()">&#43;</button>
+
+
+
+
+
+  </div>
+
+  <script>
+    
+    let myspeed = 3500; // default speed
+    let intervalId = null;
+    let currentIndex = 0;
+    const maxlines = 11;
+
+    const objects = [
+
+         "PP Loiza",
+      "PP Canovanas",
+      "PP Rio Grande",
+      "PP Luquillo",
+      "PP Fajardo",
+      "PP Fajardo",
+      "PP Juncos",
+      "PP Las Piedras",
+      "PP Naguabo",
+      "PP Ceiba",
+      "PP Ceiba",
+      "PP San Lorenzo",
+      "PP Yabucoa",
+      "PP Humacao",
+      "PP Maunabo",
+      "PP Vieques",
+      "PP Culebra", 
+      "PP Culebra",
+      "PP Culebra",
+      "PP Culebra",
+      "PP Culebra",
+      "PP Culebra"
+
+
+    ];
+
+    const objectName =  [
+
+   "Con <span class='hi-red'>Loíza</span> de sombrero",
+      "Y la bota del <span class='hi-red'>Cano Vana</span>",
+      "Cruzando el <span class='hi-red'>Río Grande</span>",
+      "Va este <span class='hi-red'>Loquillo</span>",
+      "Todo <span class='hi-red'>Fajado</span>",
+      "Y en la próxima fila",
+      "<span class='hi-red'>Juncos</span> con su rabo",
+      "Llegan a <span class='hi-red'>Las Piedras</span>",
+      "Pasan por <span class='hi-red'>Naguabo</span>",
+      "Y terminan bajo una <span class='hi-red'>Ceiba</span>",
+      "Bajamos un poco mas",
+      "Y rogamos a <span class='hi-red'>San Lorenzo</span>",
+      "que <span class='hi-red'>Ya-bu-coa</span>",
+      "aún este antes que <span class='hi-red'>Hu-ma-cao</span>",
+      "y abajo el gato <span class='hi-red'>Maunabo</span> maúlla.",
+      "Solo faltan las islas - <span class='hi-red'>Vieques</span> es la grande",
+      "<span class='hi-red'>Culebra</span> la mas pequeña",
+      "y no parece culebra ná",
+      "La Región Este se despide",
+      ".",
+      ".",
+      "." 
+ 
+    ];
+
+    const image = document.getElementById('objectImage');
+    const nameDisplay = document.getElementById('objectName');
+    const startBtn = document.getElementById('startBtn');
+    const replayBtn = document.getElementById('replayBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    
+  function showNextObject() {
+  if (currentIndex < objects.length) {
+    image.src = objects[currentIndex] + '.png';
+
+    // Count current lines in nameDisplay
+    const currentText = nameDisplay.innerHTML.trim();
+    const lines = currentText.trim() === "" ? [] : currentText.split('<br>');
+
+
+    if (lines.length >= maxlines) {
+      // Reset the display if full
+      nameDisplay.innerHTML = objectName[currentIndex];
+    } else {
+      // Append next line
+      nameDisplay.innerHTML += "<br>" + objectName[currentIndex];
+    }
+
+    currentIndex++;
+  } else {
+    clearInterval(intervalId);
+    intervalId = null;
+  }
+}
+  
+
+  function startSlideshow() {
+    if (intervalId) return;
+    intervalId = setInterval(showNextObject, myspeed);
+  }
+  function stopSlideshow() {
+    clearInterval (intervalId);
+    intervalId = null;
+  }
+    function replaySlideshow() {
+      clearInterval(intervalId);
+      intervalId = null;
+      currentIndex = 0;
+      image.src = 'Instrucciones.png';
+      nameDisplay.innerHTML = "";
+      startSlideshow();
+    }
+
+    function resetSlideshowWithSpeed(speed) {
+      myspeed = speed;
+      if (intervalId) {
+        stopSlideshow();
+        startSlideshow();
+      }
+    }
+    function gotosetspeed1() {resetSlideshowWithSpeed(5000);}
+    function gotosetspeed2() {resetSlideshowWithSpeed(3500);}
+    function gotosetspeed3() {resetSlideshowWithSpeed(2000);}
+
+    startBtn.addEventListener('click', startSlideshow);
+    replayBtn.addEventListener('click', replaySlideshow);
+    stopBtn.addEventListener('click', stopSlideshow);
+  </script>
+</body>
+</html>

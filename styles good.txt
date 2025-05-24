@@ -1,0 +1,124 @@
+/* Global styles V5 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+.header {
+    background-color: #ebaf0c;
+    color: white;
+    padding: 20px; 
+    text-align: center;
+}
+
+/* Division-line */
+.divline {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 2px;
+}
+
+/* Main container holds sidebar + content */
+.main-container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 25%;
+    background-color: #f4f4f4;
+    color: black;
+    font-size: 20px;
+    white-space: pre-line;
+    overflow: hidden;  
+    height: 450px; /* adjust height as needed */
+    Box-sizing: border-box;
+    Min-height: 450px;
+    Margin: 10px;
+}
+
+
+
+
+/* Content */
+.content {
+    width: 75%;
+    background-color: #ffffff;
+    padding: 15px;
+    Box-sizing: border-box;
+}
+
+/* Content-image */
+.content-image {
+    Max-width: 100%;  /* Makes image responsive  */
+    Width: 100%;
+    Height: auto;
+    Display: block;
+    Margin-bottom: 2px;  
+}
+
+
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 2px;
+}
+
+/* Footer-content */
+.footer-content {
+    background-color: #ebaf0c;
+    color: white;
+    padding: 10px;
+    Gap: 20px;
+    Display: flex;
+    Justify-content: center;
+}
+
+.control-btn {
+      background-color: #5cc213;
+      color: black;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      margin: 10px;
+      cursor: pointer;   
+      Display: flex;
+      Justify-content: center;  /* centers horizontally */
+      Align-item: center;  /* centers vertically if there's height*/
+}
+
+    .control-btn:hover {
+      background-color: #68db16;
+    
+}
+.speed-btn {
+      background-color: #1399c2;
+      color: black;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      margin: 10px;
+      cursor: pointer;   
+      Display: flex;
+      Justify-content: center;  /* centers horizontally */
+      Align-item: center;  /* centers vertically if there's height*/
+}
+
+    .speed-btn:hover {
+      background-color: #14afde;
+    
+}
+
+
+
+.hi-red {
+    color: red;
+}
+

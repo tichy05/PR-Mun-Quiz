@@ -1,0 +1,106 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Memorizar municipios - Menú V8</title>
+  <link rel="stylesheet" href="PP Regions styles.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Memorizar Municipios - Menú Principal</h1>
+  </div>
+  <div class="divline"></div>
+
+  <div class="main-container">
+    <div class="sidebar">
+      <div id="objectName"></div>
+    </div>
+    
+    <div class="content">
+      <img id="objectImage" src="Instrucciones.png" alt="Obj-image" class="content-image">
+    </div> 
+  </div>
+
+  <div class="footer"></div>
+  <div class="footer-content">
+    <button id="regionoeste" class="control-btn" onclick="window.location.href='PP Region Oeste.html'">Región Oeste</button>
+    <button id="regionorte" class="control-btn" onclick="window.location.href='PP Region Norte.html'">Región Norte</button>
+    <button id="regionmetro" class="control-btn" onclick="window.location.href='PP Region Metro.html'">Región Metro</button>   
+    <button id="regioneste" class="control-btn" onclick="window.location.href='PP Region Este.html'">Región Este</button>
+    <button id="regionsur" class="control-btn" onclick="window.location.href='PP Region Sur.html'">Región Sur</button>
+    <button id="regioncentral" class="control-btn" onclick="window.location.href='PP Region Central.html'">Región Central</button>
+    <button id="allregions" class="control-btn" onclick="window.location.href='PP Regiones Todas.html'">Todas</button>
+
+
+  </div>
+
+  <script>
+   const objects = [
+    
+      "Instrucciones"
+      
+    ];
+
+    const objectName =  [
+
+      "Seleccione la región a ver, o todo PR"
+
+    ];
+
+    const image = document.getElementById('objectImage');
+    const nameDisplay = document.getElementById('objectName');
+ 
+
+    let currentIndex = 0;
+    let intervalId = null;
+
+ nameDisplay.innerHTML = objectName[currentIndex];
+
+  /*  let maxLines = 11; // or however many lines fit in the container
+  function showNextObject() {
+  if (currentIndex < objects.length) {
+    image.src = objects[currentIndex] + '.png';
+
+    // Count current lines in nameDisplay
+    const currentText = nameDisplay.innerHTML.trim();
+    const lines = currentText === "   " ? [] : currentText.split('<br>');
+
+    if (lines.length >= maxLines) {
+      // Reset the display if full
+      nameDisplay.innerHTML = objectName[currentIndex];
+    } else {
+      // Append next line
+      nameDisplay.innerHTML += "<br>" + objectName[currentIndex];
+    }
+
+    currentIndex++;
+  } else {
+    clearInterval(intervalId);
+    intervalId = null;
+  }
+} 
+
+   function startSlideshow() {
+      if (intervalId) return;
+      intervalId = setInterval(showNextObject, 4000);
+    }
+
+    function replaySlideshow() {
+      clearInterval(intervalId);
+      intervalId = null;
+      currentIndex = 0;
+      image.src = 'Instrucciones.png';
+      nameDisplay.innerHTML = "";
+      startSlideshow();
+    }
+
+   
+    regionoeste.addEventListener('click', startSlideshow);
+    regionoeste.addEventListener('click', startSlideshow); */
+
+  </script>
+</body>
+</html>
