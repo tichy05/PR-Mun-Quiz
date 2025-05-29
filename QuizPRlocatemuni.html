@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta charset="UTF-8">
+  <title>Quiz Municipios de Puerto Rico</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin: 0; 
+    background-color: #ffbf00; }
+  img { width: 50%; height:auto; } 
+ 
+    #buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-height: 400px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 0 auto;
+      width: 90%;
+      box-sizing: border-box;
+    }
+
+    .object-btn {
+      background-color: white;
+      color: black;
+      font-size: 14px;
+      padding: 5px 15px;
+      border-width: 1.5px;
+      border-radius: 0px;
+      margin: 5px;
+      cursor: pointer;
+      flex: 0 1 auto;
+    }
+
+    .object-btn:hover {
+      background-color: #2cb2d3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Oprima el botón para localizar el municipio correspondiente</h1>
+  <img id="objectImage" src="blank.png" alt="Object Image"; width:50%; height:auto>
+  <div id="buttons"></div>
+   <button id="nextBtn" class="object-btn"> </button>
+
+  <script>
+   const objects = [
+      "Adjuntas","Aguada","Aguadilla","Aguas Buenas","Aibonito","Arecibo","Arroyo","Añasco",
+      "Barceloneta","Barranquitas","Bayamón","Cabo Rojo","Caguas","Camuy","Canóvanas","Carolina",
+      "Cataño","Cayey","Ceiba","Ciales","Cidra","Coamo","Comerío","Corozal","Culebra","Dorado",
+"Fajardo","Florida","Guayama","Guayanilla","Guaynabo","Gurabo","Guánica","Hatillo","Hormigueros", "Humacao","Isabela","Jayuya","Juana Díaz","Juncos","Lajas","Lares","Las Marías","Las Piedras",
+      "Loíza","Luquillo","Manatí","Maricao","Maunabo","Mayagüez","Moca","Morovis","Naguabo",
+      "Naranjito","Orocovis","Patillas","Peñuelas","Ponce","Quebradillas","Rincón","Río Grande",
+      "Sabana Grande","Salinas","San Germán","San Juan","San Lorenzo","San Sebastián","Santa Isabel","Toa Alta","Toa Baja","Trujillo Alto","Utuado","Vega Alta","Vega Baja","Vieques","Villalba","Yabucoa","Yauco"
+
+    ]; let currentIndex = 0;
+
+   const image = document.getElementById('objectImage');
+    const buttonsDiv = document.getElementById('buttons');
+
+    function loadButtons() {
+      objects.forEach(obj => {
+        const btn = document.createElement('button');
+        btn.textContent = obj;
+        btn.className = 'object-btn';
+        btn.onclick = () => {
+          image.src = obj + '.png';
+        };
+        buttonsDiv.appendChild(btn);
+      });
+    }
+
+    loadButtons();
+  </script>
+</body>
+</html>
+
