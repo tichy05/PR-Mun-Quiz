@@ -1,57 +1,199 @@
-<!DOCTYPE html> 
-<html lang="en"> 
+<!DOCTYPE html>
+<html lang="en">
 <head>
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta charset="UTF-8"> 
-  <title>HTML Grid Menu Index</title> 
-  <style> 
-    body  { 
-      font-family: Arial, sans-serif; 
-      padding: 40px; 
-      background-color: #AF8C4C; 
-     } 
-      img { width: 50%; height:auto; background-color: #AF8C4C;  }
-    .grid-menu  { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
-      gap: 20px; 
-      max-width: 400px; 
-      margin: 150px auto; /* Buttons origin */
-     } 
-    .grid-menu button  { 
-      padding: 20px; 
-      background-color: #2935b9; 
-      color: white; 
-      border: none; 
-      border-radius: 8px; 
-      font-size: 16px; 
-      cursor: pointer; 
-      transition: background-color 0.3s ease; 
-     } 
-    .grid-menu button:hover  { 
-      background-color: #2980b9; 
-     } 
-  </style> 
-</head> 
-<body> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Municipios de PR</title>
+  <style>
+    
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      line-height: 1.5;
+      background-color: #f4f4f4;
+      background-image: url('Bandera.png');
+      background-size: cover;
+    }
+
+    header, footer {
+      background-color: #ffbf00;
+      color: black;
+      text-align: center;
+      padding: 0rem     
+      
  
-  <h1 style="text-align:center;">Aprende a reconocer los municipios de Puerto Rico</h1> 
- 
-  <div class="grid-menu"> 
- <button onclick="location.href='QuizPRlocatemuni.html'">Por municipio</button> 
- <button onclick="location.href='PP Main Menu.html'">Ayuda para memorizar</button>
- <button onclick="location.href='QuizMenu.html'">Prueba tus conocimientos</button> 
- <button onclick="location.href=''"> </button> 
- <button onclick="location.href='QuizPRimagewithnames.html'">Mapa de PR con nombres</button> 
- <button onclick="location.href='QuizPRimagenonames.html'">Mapa de PR sin nombres</button> 
+
+    }
+
+    main {
+      padding: 1rem 2vw;
+      max-width: 1000px;
+      margin-top: 1rem;
+      margin-left: 6.3rem;
+      background-color: white;
+      border-radius: 12px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 1rem;
+      
+      
+    }
+
+    .card {
+      background:  #ffbf00;
+      padding: 1.5rem 1rem;
+      border-radius: 12px;
+      flex: 1 1 280px;
+      max-width: 220px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease-in-out;
+   /*   background-image: url('Bandera.png'); 
+      color: white; */
+   /*   background-color:rgb(186, 19, 19); */
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .card h3 {
+      margin-top: 0px;
+    }
+
+    .card p {
+      margin-bottom: 1rem;
+    }
+
+    .card a {
+      background-color: white;
+      color: black;
+      padding: 0.75rem;
+      border-radius: 0px;
+      border-color: black;
+      border-width: 2px;
+      border-style: solid;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      transition: background-color 0.3s ease;
+    }
+
+    .card a:hover,
+    .card a:active {
+      background-color: #0056b3;
+    }
+
+    nav.main-nav {
+      background-color: #333;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      border-radius: 0px;
+      margin: 1rem auto;
+      max-width: 1000px;
+      padding: 0.5rem;
+    }
+
+    nav.main-nav a {
+      color: white;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      flex: 0 1 auto;
+      text-align: center;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    nav.main-nav a:hover,
+    nav.main-nav a:active {
+      background-color: #555;
+    }
+
+    footer {
+      font-size: 0.875rem;
+      padding: 1rem;
+    }
+    header {
+      font-size: 0.7rem;
+      padding: 0.5rem;
+    }
 
 
- 
-    <!-- Add more buttons as needed --> 
-  </div> 
- 
- <h1 style="font-size:100%;text-align:Right;">Todos los mapas a continuación son cortesía de Paintmaps.com</
+    @media (max-width: 768px) {
+      nav.main-nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
 
-</body> 
-</html> 
+      .card {
+        width: 90%;
+        max-width: none;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Municipios de Puerto Rico: ¿puedes identificarlos? </h1>
+  </header>
+
+  <main>
+    <h2>Contenido:</h2>
+    <p>Te brindamos unas pruebas interactivas, para que midas tus conocimientos
+      sobre la ubicación geográfica de los municipios de PR, y te ayuden a aprender 
+      cómo localizarlos en un mapa.
+    </p>
+
+    <div class="card-container">
+      <div class="card">
+        <h3>Aprendizaje #1</h3>
+        <p>Identificación de municipios por selección individual</p>
+        <a href="QuizPRlocatemuni.html">SELECCIONAR</a>
+      </div>
+
+      <div class="card">
+        <h3>Aprendizaje #2</h3>
+        <p>Presentación visual con texto para memorizar, por regiones</p>
+        <a href="Muni PP Menu.html">SELECCIONAR</a>
+      </div>
+
+      <div class="card">
+        <h3>Pruebas</h3>
+        <p>Pon a prueba tus conocimientos. </p>
+        <a href="QuizMenu.html">SELECCIONAR</a>
+      </div>
+    </div>
+  </main>
+<p></p>
+  <nav class="main-nav">
+    <a href="Muni Main Menu.html">Inicio</a>
+    <a href="Muni Aviso.html">Aviso</a>
+    <a href="Muni contacts.html">Contacto</a>
+    
+ 
+ 
+  </nav>
+
+  <footer>
+    &copy; 2025 JCFP
+  </footer>
+ 
+</body>
+</html>
