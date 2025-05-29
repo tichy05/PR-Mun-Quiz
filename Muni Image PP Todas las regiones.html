@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Municipios de PR - Presentación Todas las Regiones</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      line-height: 1.5;
+      background-color: white;
+    }
+
+    header, footer {
+      background-color: #ffbf00;
+      color: black;
+      text-align: center;
+      padding: 0rem;
+    }
+
+    main {
+      padding: 1rem 2vw;
+      max-width: 1000px;
+      margin: auto;
+      background-color: white;
+    }
+
+    .content-image {
+      width: 100%;
+      max-width: 760px;
+      height: auto;
+      display: block;
+      margin: 1rem auto;
+      border-radius: 10px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: #e9ecef;
+      padding: 1rem;
+      border-radius: 8px;
+      flex: 1 1 280px;
+      max-width: 500px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.2s ease-in-out;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #333;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      border-radius: 8px;
+      margin: 1rem auto;
+      max-width: 1000px;
+      padding: 0.5rem;
+      gap: 0.5rem;
+    }
+
+    nav a {
+      color: white;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      text-align: center;
+      background-color: black;
+      border-radius: 6px;
+      flex: 1 1 auto;
+      min-width: 100px;
+      transition: background-color 0.3s;
+     Cursor: pointer;
+    }
+
+    nav a:hover,
+    nav a:active {
+      background-color: #555;
+    }
+
+    footer {
+      font-size: 0.875rem;
+      padding: 1rem;
+    }
+    header {
+      font-size: 0.7rem;
+      padding: 0.5rem;
+    }
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .card {
+        width: 90%;
+        max-width: none;
+       Height: auto;
+      }
+
+      nav a {
+        min-width: unset;
+        width: 100%;
+      }
+     }
+.hi-red {
+    color: red;
+}
+
+
+
+
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Municipios de PR: Todas las Regiones - Herramienta de memoria</h1>
+  </header>
+
+  <main>
+    <img id="objectImage" src="Comenzar.png" alt="Obj-image" class="content-image" />
+
+    <div class="card-container">
+      <div class="card">
+         <div id="objectName"></div>
+      </div>
+    </div>
+  </main>
+
+  <nav>
+    <a id="startBtn" type="button">&#9658;</a>
+    <a id="replayBtn" type="button">&#8634;</a>
+    <a id="stopBtn" type="button">&#9208;</a>
+    <a id="volvermenu" onclick="window.location.href='Muni Main Menu.html'">Menu principal</a>
+    <a type="button" onclick="gotosetspeed1()">&#8722; Vel</a>
+    <a type="button" onclick="gotosetspeed2()">Velocidad Normal</a>
+    <a type="button" onclick="gotosetspeed3()">&#43; Vel</a>
+  </nav>
+
+  <footer>
+    &copy; 2025 Municipios de PR
+  </footer>
+</body>
+
+
+<script>
+    
+    let myspeed = 3500; // default speed
+    let intervalId = null;
+    let currentIndex = 0;
+    const maxlines = 1;
+
+
+    const objects = [
+
+           "PP Aguadilla Isabela Quebradillas",
+      "PP Aguada Moca",
+      "PP San Sebastian Lares",
+      "PP Rincon Anasco Las Marias",
+      "PP Mayaguez Maricao",
+      "PP Hormigueros",
+      "PP Cabo Rojo",
+      "PP San German Sabana Grande",
+      "PP Lajas Guanica",
+      "PP Lajas Guanica",
+     
+
+      "PP Camuy",
+      "PP Hatillo",
+      "PP Arecibo",
+      "PP Barceloneta Florida",
+      "PP Manati",
+      "PP Vega Baja Vega Alta",
+      "PP Dorado",
+      "PP Toa Baja Toa Alta",
+      "PP Toa Baja Toa Alta",
+      "PP Toa Baja Toa Alta",
+      "PP Toa Baja Toa Alta",
+
+      "PP Cataño",
+      "PP Bayamon",
+      "PP Guaynabo San Juan",
+      "PP Carolina",
+      "PP Aguas Buenas",
+      "PP Caguas",
+      "PP Gurabo",
+      "PP Trujillo Alto",
+      "PP Trujillo Alto",
+      "PP Trujillo Alto",
+      "PP Trujillo Alto",  
+
+      "PP Loiza",
+      "PP Canovanas",
+      "PP Rio Grande",
+      "PP Luquillo",
+      "PP Fajardo",
+      "PP Fajardo",
+      "PP Juncos",
+      "PP Las Piedras",
+      "PP Naguabo",
+      "PP Ceiba",
+      "PP Ceiba",
+      "PP San Lorenzo",
+      "PP Yabucoa",
+      "PP Humacao",
+      "PP Maunabo",
+      "PP Vieques",
+      "PP Culebra", 
+      "PP Culebra",
+      "PP Culebra",
+      "PP Culebra",
+      "PP Culebra",
+      "PP Culebra",    
+  
+
+      "PP Yauco",
+      "PP Guayanilla",
+      "PP Peñuelas",
+      "PP Ponce",
+      "PP Juana Diaz y Santa Isabel",
+      "PP Villalba y Coamo",
+      "PP Salinas",
+      "PP Guayama",
+      "PP Arroyo",
+      "PP Patillas",
+      "PP Patillas",
+  
+
+       "PP Adjuntas",
+	"PP Adjuntas",
+	"PP Utuado",
+	"PP Jayuya",
+	"PP Ciales",
+	"PP Orocovis",
+	"PP Morovis",
+	"PP Corozal",
+	"PP Barranquitas",
+	"PP Naranjito",
+	"PP Comerio",
+	"PP Comerio",
+	"PP Cidra",
+	"PP Cayey", 
+	"PP Cayey" 
+
+
+    ];
+
+    const objectName =  [
+
+ "Las hermanas <span class='hi-red'>Aguadilla, Isabela y Quebradillas</span>",
+      "cogieron una v<span class='hi-red'>Aguada en Moca</span>",
+      "Y sus gritos se oyeron en la <span class='hi-red'>San Sebastián y en Lares</span>",
+      "Mientras en un <span class='hi-red'>Rincón</span>, Don <span class='hi-red'>Añasco y Las Marías</span>",
+      "le forman a <span class='hi-red'>Mayagüez y a Mari Caos</span>", 
+      "al ser picados en unos <span class='hi-red'>Hormigueros</span>",
+      "que de tanto rascarse al <span class='hi-red'>Cabo</span> se les puso <span class='hi-red'>Rojo</span>",
+      "Llegan a la plaza de <span class='hi-red'>San Germán</span> y compran una <span class='hi-red'>Sabana Grande</span>",
+      "para las tías <span class='hi-red'>Lajas y Guánica</span>",
+      "y esa fue la Región Oeste",
+
+      "Arriba, al lado de Quebradillas hay una <span class='hi-red'>Ca</span>-verna <span class='hi-red'>muy</span> profunda",
+      "Y su vecino es <span class='hi-red'>Hatillo</span>, donde tomamos leche en platillo", 
+      "¡Es verdad, tengo <span class='hi-red'>A</span>quí el <span class='hi-red'>Recibo</span>!",
+      "Luego viajamos a <span class='hi-red'>Barceloneta</span> y bajamos a <span class='hi-red'>Florida</span>",
+      "Vimos a Moisés el <span class='hi-red'>Manatí</span>",
+      "y llegamos a las <span class='hi-red'>Vega</span>s, primero la <span class='hi-red'>Baja</span> y la <span class='hi-red'>Alta</span> después",
+      "Todo era<span class='hi-red'> Dorado</span>",
+      "y <span class='hi-red'>To' a</span>gradecidos llegamos, arriba a la <span class='hi-red'>Baja</span> y a la <span class='hi-red'>Alta</span>, abajo",
+      "la Región Norte le dice adiós a usted.",
+      ".",
+      "..",
+    
+      "En la punta arriba en la bahía está el pequeño <span class='hi-red'>Cataño</span>",
+      "y debajo <span class='hi-red'>Bayamón</span>;",
+      "le siguen <span class='hi-red'>Guaynabo y San Juan</span>",
+      "y <span class='hi-red'>Carolina</span> cierra el portón.",
+      "Mas abajo tomarás <span class='hi-red'>Aguas Buenas</span>",
+      "y mas buenas <span class='hi-red'>Caguas</span> no hay",
+      "Con <span class='hi-red'>Gurabo</span> ya casi terminamos",
+      "solo falta <span class='hi-red'>Trujillo Alto</span> en el centro",
+      "Esa es la Región Metro",
+      ".",
+      "..",  
+    
+
+      "Con <span class='hi-red'>Loíza</span> de sombrero",
+      "Y la bota del <span class='hi-red'>Cano Vana</span>",
+      "Cruzando el <span class='hi-red'>Río Grande</span>",
+      "Va este <span class='hi-red'>Loquillo</span>",
+      "Todo <span class='hi-red'>Fajado</span>",
+      "Y en la próxima fila",
+      "<span class='hi-red'>Juncos</span> con su rabo",
+      "Llegan a <span class='hi-red'>Las Piedras</span>",
+      "Pasan por <span class='hi-red'>Naguabo</span>",
+      "Y terminan bajo una <span class='hi-red'>Ceiba</span>",
+      "Bajamos un poco mas",
+      "Y rogamos a <span class='hi-red'>San Lorenzo</span>",
+      "que <span class='hi-red'>Ya-bu-coa</span>",
+      "aún este antes que <span class='hi-red'>Hu-ma-cao</span>",
+      "y abajo el gato <span class='hi-red'>Maunabo</span> maúlla.",
+      "Solo faltan las islas - <span class='hi-red'>Vieques</span> es la grande",
+      "<span class='hi-red'>Culebra</span> la mas pequeña",
+      "y no parece culebra ná",
+      "La Región Este se despide",
+      ".",
+      "..",
+      "...",  
+
+      "Al Sur tenemos a <span class='hi-red'>Yauco</span> y su forma es una Y",
+      "No sé si hay guayos, pero le sigue <span class='hi-red'>Guayanilla</span>",
+      "No sé si hay peñas, pero el próximo es <span class='hi-red'>Peñuelas</span>",
+      "Y entramos al mas grande, <span class='hi-red'>Ponce</span>",
+      "A su derecha están las señoras <span class='hi-red'>Juana Díaz y Santa Isabel</span>",
+      "y encima de ellas, <span class='hi-red'>Villa-Alba y Co</span>-mo-te-<span class='hi-red'>amo</span>",
+      "Les sigue el pueblo mas salado, <span class='hi-red'>Salinas</span>",
+      "Llegamos al otro guayo, <span class='hi-red'>Guayama</span>",
+      "y nos refrescamos en el <span class='hi-red'>Arroyo</span>",
+      "con el agua hasta las <span class='hi-red'>Patillas</span>",
+      "Y terminamos con la Región Sur",
+
+
+      "Comenzamos con Yauco (el de forma en Y) de referencia;", 
+      "encima tiene a <span class='hi-red'>Adjuntas</span",     
+      "y luego está el grandote <span class='hi-red'>Utuado</span>",
+      "Vas y te ríes con doña Yuya en <span class='hi-red'>Jayuya</span>", 
+      "El del rabito no lo hales, es <span class='hi-red'>Ciales</span>",
+      "Busca oro en <span class='hi-red'>Orocovis</span>,",
+      "debajo de los moros de <span class='hi-red'>Morovis</span>",
+      "Pasa a cantar con el <span class='hi-red'>Coro Zal</span>",
+      "Mientras barren y quitan hojas <span class='hi-red'> (Barranquitas)</span>",
+      "debajo del pequeño <span class='hi-red'>Naranjal (Naranjito)</span>",
+      "<span class='hi-red'>Come</span> en el <span class='hi-red'>Río</span>",
+      "Mira ¡<span class='hi-red'>Ay</span> qué <span class='hi-red'>Bonito</span>!",
+      "y hay <span class='hi-red'>Cidra</span> para beber",
+      "y llegamos a <span class='hi-red'>Cayey</span> ¡lechón!",
+      "Esa fue la Región Central que lo saluda"
+
+    ];
+
+
+    const image = document.getElementById('objectImage');
+    const nameDisplay = document.getElementById('objectName');
+    const startBtn = document.getElementById('startBtn');
+    const replayBtn = document.getElementById('replayBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    
+  function showNextObject() {
+  if (currentIndex < objects.length) {
+    image.src = objects[currentIndex] + '.png';
+
+    // Count current lines in nameDisplay
+    const currentText = nameDisplay.innerHTML.trim();
+    const lines = currentText.trim() === "" ? [] : currentText.split('<br>');
+
+
+    if (lines.length >= maxlines) {
+      // Reset the display if full
+      nameDisplay.innerHTML = objectName[currentIndex];
+    } else {
+      // Append next line
+      nameDisplay.innerHTML += "<br>" + objectName[currentIndex];
+    }
+
+    currentIndex++;
+  } else {
+    clearInterval(intervalId);
+    intervalId = null;
+  }
+}
+  
+
+  function startSlideshow() {
+    if (intervalId) return;
+    intervalId = setInterval(showNextObject, myspeed);
+  }
+  function stopSlideshow() {
+    clearInterval (intervalId);
+    intervalId = null;
+  }
+    function replaySlideshow() {
+      clearInterval(intervalId);
+      intervalId = null;
+      currentIndex = 0;
+      image.src = 'Instrucciones.png';
+      nameDisplay.innerHTML = "";
+      startSlideshow();
+    }
+
+    function resetSlideshowWithSpeed(speed) {
+      myspeed = speed;
+      if (intervalId) {
+        stopSlideshow();
+        startSlideshow();
+      }
+    }
+    function gotosetspeed1() {resetSlideshowWithSpeed(5000);}
+    function gotosetspeed2() {resetSlideshowWithSpeed(3500);}
+    function gotosetspeed3() {resetSlideshowWithSpeed(2000);}
+
+    startBtn.addEventListener('click', startSlideshow);
+    replayBtn.addEventListener('click', replaySlideshow);
+    stopBtn.addEventListener('click', stopSlideshow);
+
+  </script>
+</body>
+
+
+</html>
