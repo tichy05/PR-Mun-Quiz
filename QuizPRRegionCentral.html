@@ -13,13 +13,13 @@
     #options {
   	display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* optional spacing between buttons */
-  max-width: 300px; /* optional, controls line wrap based on width */
+  gap: 5px; /* optional spacing between buttons */
+  max-width: 768px; /* optional, controls line wrap based on width */
   Margin:0px auto; /* centers and adds top space. */
 }
 
   #options button {
-  flex: 1 1 calc(50% - 10px); /* 2 per row, minus gap */
+  flex: 0 1 calc(25% - 10px); /* 2 per row, minus gap */
   box-sizing: border-box;
   Padding: 10px;
 }
@@ -36,6 +36,8 @@
     #nextBtn { margin-top: 20px; display: none; 
     background-color: #6729b9; color: white;  }  /* Continue button in another color */
 
+    @media (max-width: 768px);
+    
   </style>
 </head>
 <body>
