@@ -13,13 +13,13 @@
     #options {
   	display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* optional spacing between buttons */
-  max-width: 300px; /* optional, controls line wrap based on width */
+  gap: 5px; /* optional spacing between buttons */
+  max-width: 768px; /* optional, controls line wrap based on width */
   Margin:0px auto; /* centers and adds top space. */
 }
 
   #options button {
-  flex: 1 1 calc(50% - 10px); /* 2 per row, minus gap */
+  flex: 0 1 calc(25% - 10px); /* 2 per row, minus gap */
   box-sizing: border-box;
   Padding: 10px;
 }
@@ -33,9 +33,21 @@
     }
     .correct { background-color: #4CAF50; color: white; }
     .wrong { background-color: #f44336; color: white; }
-    #nextBtn { margin-top: 20px; display: none; 
+    #nextBtn { margin-left: 0px; display: none; max-width: 100px;
     background-color: #6729b9; color: white;  }  /* Continue button in another color */
 
+   #footer {
+  	display: flex;
+  flex-wrap: wrap;
+  gap: 200px; /* optional spacing between buttons */
+  max-width: 768px; /* optional, controls line wrap based on width */
+  Margin: 0px auto; /* centers and adds top space. */
+  font-size: 14pt;
+  font-weight: bold;
+
+   }
+     @media (max-width: 768px) 
+ 
   </style>
 </head>
 <body>
@@ -51,15 +63,16 @@
     <button id="btn4" onclick="checkAnswer(this)"></button>
   </div>
 
- 
-  <p id="feedback"></p>
+ <div id="footer">
   <p id="scoreDisplay">Correctos: 0/0</p>  
+  <p id="feedback"></p>
   <button id="nextBtn" onclick="nextQuestion()">Próximo</button>
+<div>
 
+</body>
   <script>
     const municipios = [
-      
-     "Culebra",
+      "Culebra",
       "Humacao","Maunabo",
      "San Lorenzo","Loíza","Canóvanas","Juncos","Río Grande",
      "Vieques","Luquillo","Fajardo","Ceiba","Naguabo",
@@ -121,10 +134,10 @@
       });
 
       if (selected === correct) {
-        document.getElementById('feedback').textContent = "Correcto!";
+        document.getElementById('feedback').textContent = "¡Correcto!";
         score++;
       } else {
-        document.getElementById('feedback').textContent = "Incorrecto.";
+        document.getElementById('feedback').textContent = "Incorrecto";
       }
 
       document.getElementById('scoreDisplay').textContent = `Correctos: ${score}/${questions.length}` ;
