@@ -46,12 +46,27 @@
   font-weight: bold;
 
    }
-     @media (max-width: 768px) 
+     @media only screen and (min-width: 600px)
+{#rotateWarning {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: #000000cc;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  padding-top: 40vh;
+  z-index: 9999;
+  
+}}
+
+
  
   </style>
 </head>
 <body>
-
+<div id="rotateWarning">Por favor, gire su dispositivo a modo horizontal (landscape).</div>
   <h1 id="questionText">Todas las Regiones: Identifique el municipio resaltado</h1>
   <img id="quizImage" src="" alt="Map Highlight"><br><br>
 
@@ -156,6 +171,18 @@
     }
 
     loadQuestion();
+
+    function checkOrientation() {
+ const warning = document.getElementById('rotateWarning');
+ const isPortrait = window.matchMedia("(orientation: landscape)").matches;
+    
+  warning.style.display = isPortrait ? 'none' : 'block'; 
+ } 
+window.addEventListener('resize', checkOrientation);
+window.addEventListener('load', checkOrientation);
+window.addEventListener('orientationchange', () => {setTimeout(checkOrientation, 300); 
+});
+
   </script>
 
 </body>
