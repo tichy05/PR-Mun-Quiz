@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta charset="UTF-8">
+  <title>Quiz Municipios de Puerto Rico</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin: 0; 
+    background-color: #ffbf00; }
+    img { width: 50%; height:auto; }
+     
+    #options {
+  	display: flex;
+  flex-wrap: wrap;
+  gap: 5px; /* optional spacing between buttons */
+  max-width: 768px; /* optional, controls line wrap based on width */
+  Margin:0px auto; /* centers and adds top space. */
+}
+
+  #options button {
+  flex: 0 1 calc(25% - 10px); /* 2 per row, minus gap */
+  box-sizing: border-box;
+  Padding: 10px;
+}
+    button {
+      display: block; margin: 10px auto; padding: 10px 20px;
+      font-size: 16px; width: 200px; cursor: pointer;
+      background-color: #2935b9; 
+      color: white; 
+
+
+    }
+    .correct { background-color: #4CAF50; color: white; }
+    .wrong { background-color: #f44336; color: white; }
+    #nextBtn { margin-left: 0px; display: none; max-width: 100px;
+    background-color: #6729b9; color: white;  }  /* Continue button in another color */
+
+   #footer {
+  	display: flex;
+  flex-wrap: wrap;
+  gap: 200px; /* optional spacing between buttons */
+  max-width: 768px; /* optional, controls line wrap based on width */
+  Margin: 0px auto; /* centers and adds top space. */
+  font-size: 14pt;
+  font-weight: bold;
+
+   }
+     @media (max-width: 768px) 
+ 
+  </style>
+</head>
+<body>
+
+  <h1 id="questionText">Todas las Regiones: Identifique el municipio resaltado</h1>
+  <img id="quizImage" src="" alt="Map Highlight"><br><br>
+
+
+  <div id="options">
+    <button id="btn1" onclick="checkAnswer(this)"></button>
+    <button id="btn2" onclick="checkAnswer(this)"></button>
+    <button id="btn3" onclick="checkAnswer(this)"></button>
+    <button id="btn4" onclick="checkAnswer(this)"></button>
+  </div>
+
+ <div id="footer">
+  <p id="scoreDisplay">Correctos: 0/0</p>  
+  <p id="feedback"></p>
+  <button id="nextBtn" onclick="nextQuestion()">Próximo</button>
+<div>
+
+</body>
+  <script>
+    const municipios = [
+     "Adjuntas","Aguada","Aguadilla","Aguas Buenas","Aibonito","Arecibo","Arroyo","Añasco",
+      "Barceloneta","Barranquitas","Bayamón","Cabo Rojo","Caguas","Camuy","Canóvanas","Carolina",
+      "Cataño","Cayey","Ceiba","Ciales","Cidra","Coamo","Comerío","Corozal","Culebra","Dorado",
+      "Fajardo","Florida","Guayama","Guayanilla","Guaynabo","Gurabo","Guánica","Hatillo","Hormigueros",
+      "Humacao","Isabela","Jayuya","Juana Díaz","Juncos","Lajas","Lares","Las Marías","Las Piedras",
+      "Loíza","Luquillo","Manatí","Maricao","Maunabo","Mayagüez","Moca","Morovis","Naguabo",
+      "Naranjito","Orocovis","Patillas","Peñuelas","Ponce","Quebradillas","Rincón","Río Grande",
+      "Sabana Grande","Salinas","San Germán","San Juan","San Lorenzo","San Sebastián","Santa Isabel",
+      "Toa Alta","Toa Baja","Trujillo Alto","Utuado","Vega Alta","Vega Baja","Vieques","Villalba",
+      "Yabucoa","Yauco"    ];
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    const questions = shuffle(municipios.map(correct => ({
+      correct,
+      image: `${correct}.png`
+    })));
+
+    let current = 0;
+    let score = 0;
+    let answered = false;
+
+    const btns = [document.getElementById('btn1'), document.getElementById('btn2'), document.getElementById('btn3'), document.getElementById('btn4')];
+
+    function loadQuestion() {
+      const q = questions[current];
+      document.getElementById('questionText').textContent = `Región Todas ${current + 1}: Identifique el municipio resaltado`;
+      document.getElementById('quizImage').src = q.image;
+
+      const incorrect = shuffle(municipios.filter(m => m !== q.correct)).slice(0, 3);
+      const choices = shuffle([q.correct, ...incorrect]);
+
+      btns.forEach((btn, i) => {
+        btn.textContent = choices[i];
+        btn.className = '';
+        btn.disabled = false;
+      });
+
+      document.getElementById('feedback').textContent = '';
+      document.getElementById('nextBtn').style.display = 'none';
+      answered = false;
+    }
+
+    function checkAnswer(button) {
+      if (answered) return;
+      answered = true;
+
+      const selected = button.textContent;
+      const correct = questions[current].correct;
+
+      btns.forEach(btn => {
+        if (btn.textContent === correct) {
+          btn.classList.add('correct');
+        } else if (btn === button && selected !== correct) {
+          btn.classList.add('wrong');
+        }
+        btn.disabled = true;
+      });
+
+      if (selected === correct) {
+        document.getElementById('feedback').textContent = "¡Correcto!";
+        score++;
+      } else {
+        document.getElementById('feedback').textContent = "Incorrecto";
+      }
+
+      document.getElementById('scoreDisplay').textContent = `Correctos: ${score}/${questions.length}` ;
+      document.getElementById('nextBtn').style.display = current < questions.length - 1 ? 'inline-block' : 'none';
+    }
+
+    function nextQuestion() {
+      if (current < questions.length - 1) {
+        current++;
+        loadQuestion();
+      }
+    }
+
+    loadQuestion();
+  </script>
+
+</body>
+</html>
