@@ -5,6 +5,8 @@
  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta charset="UTF-8">
   <title>Quiz Municipios de Puerto Rico</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <style>
     body { font-family: Arial, sans-serif; text-align: center; margin: 0; 
     background-color: #ffbf00; }
@@ -60,13 +62,11 @@
   z-index: 9999;
   
 }}
-
-
  
   </style>
 </head>
 <body>
- <div id="rotateWarning">Por favor, gire su dispositivo a modo horizontal (landscape).</div>
+<div id="rotateWarning">Por favor, gire su dispositivo a modo horizontal (landscape).</div>
   <h1 id="questionText">Región Oeste: Identifique el municipio resaltado</h1>
   <img id="quizImage" src="" alt="Map Highlight"><br><br>
 
@@ -87,14 +87,14 @@
 </body>
   <script>
     const municipios = [
-     "Aguada","Aguadilla",
+      "Aguada","Aguadilla",
       "Cabo Rojo","Añasco",
      "Guánica","Hormigueros",
       "Isabela","Lajas","Lares","Las Marías",
      "Mayagüez","Moca","Maricao",
      "Quebradillas","Rincón","Yauco",
-      "San Germán","San Sebastián","Sabana Grande"
-         ];
+      "San Germán","San Sebastián","Sabana Grande"   
+    ];
 
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -159,7 +159,46 @@
 
       document.getElementById('scoreDisplay').textContent = `Correctos: ${score}/${questions.length}` ;
       document.getElementById('nextBtn').style.display = current < questions.length - 1 ? 'inline-block' : 'none';
-    }
+    
+      // Trigger confetti if perfect score and last question
+              if (current === questions.length - 1 && score === questions.length) {
+        // Show message
+        const msg = document.getElementById('victoryMessage');
+        msg.style.display = 'block';
+
+        // Launch confetti
+        const duration = 5 * 1000;
+        const end = Date.now() + duration;
+
+        (function frame() {
+          confetti({
+            particleCount: 5,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 }
+          });
+          confetti({
+            particleCount: 5,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 }
+          });
+
+          if (Date.now() < end) {
+            requestAnimationFrame(frame);
+          }
+        })();
+
+        // Hide message after 4 seconds
+        setTimeout(() => {
+          msg.style.display = 'none';
+        }, 4000);
+      }
+
+
+      }
+    
+
 
     function nextQuestion() {
       if (current < questions.length - 1) {
@@ -181,6 +220,12 @@ window.addEventListener('orientationchange', () => {setTimeout(checkOrientation,
 });
 
   </script>
+<div id="victoryMessage" style="display:none; 
+position:fixed; top:30%; left:0; width:100%; 
+text-align:center; font-size:3em; font-weight:bold; 
+color:white; text-shadow: 2px 2px #000; z-index:9999;">
+  ¡Weepaaa!  100%
+</div>
 
 </body>
 </html>

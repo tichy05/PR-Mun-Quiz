@@ -5,6 +5,8 @@
  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta charset="UTF-8">
   <title>Quiz Municipios de Puerto Rico</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <style>
     body { font-family: Arial, sans-serif; text-align: center; margin: 0; 
     background-color: #ffbf00; }
@@ -46,7 +48,7 @@
   font-weight: bold;
 
    }
-     @media only screen and (min-width: 600px)
+    @media only screen and (min-width: 600px)
 {#rotateWarning {
   display: none;
   position: fixed;
@@ -59,7 +61,7 @@
   padding-top: 40vh;
   z-index: 9999;
   
-}} 
+}}
  
   </style>
 </head>
@@ -85,10 +87,9 @@
 </body>
   <script>
     const municipios = [
-      "Adjuntas","Aibonito",
+       "Adjuntas","Aibonito",
     "Barranquitas","Cayey","Ciales","Cidra","Comerío","Corozal",
-    "Jayuya","Morovis","Naranjito","Orocovis","Utuado"
-     
+    "Jayuya","Morovis","Naranjito","Orocovis","Utuado"     
     ];
 
     function shuffle(array) {
@@ -154,7 +155,46 @@
 
       document.getElementById('scoreDisplay').textContent = `Correctos: ${score}/${questions.length}` ;
       document.getElementById('nextBtn').style.display = current < questions.length - 1 ? 'inline-block' : 'none';
-    }
+    
+      // Trigger confetti if perfect score and last question
+              if (current === questions.length - 1 && score === questions.length) {
+        // Show message
+        const msg = document.getElementById('victoryMessage');
+        msg.style.display = 'block';
+
+        // Launch confetti
+        const duration = 5 * 1000;
+        const end = Date.now() + duration;
+
+        (function frame() {
+          confetti({
+            particleCount: 5,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 }
+          });
+          confetti({
+            particleCount: 5,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 }
+          });
+
+          if (Date.now() < end) {
+            requestAnimationFrame(frame);
+          }
+        })();
+
+        // Hide message after 4 seconds
+        setTimeout(() => {
+          msg.style.display = 'none';
+        }, 4000);
+      }
+
+
+      }
+    
+
 
     function nextQuestion() {
       if (current < questions.length - 1) {
@@ -164,8 +204,7 @@
     }
 
     loadQuestion();
-
- function checkOrientation() {
+function checkOrientation() {
  const warning = document.getElementById('rotateWarning');
  const isPortrait = window.matchMedia("(orientation: landscape)").matches;
     
@@ -174,8 +213,15 @@
 window.addEventListener('resize', checkOrientation);
 window.addEventListener('load', checkOrientation);
 window.addEventListener('orientationchange', () => {setTimeout(checkOrientation, 300); 
-});   
+});
+
   </script>
+<div id="victoryMessage" style="display:none; 
+position:fixed; top:30%; left:0; width:100%; 
+text-align:center; font-size:3em; font-weight:bold; 
+color:white; text-shadow: 2px 2px #000; z-index:9999;">
+  ¡Weepaaa!  100%
+</div>
 
 </body>
 </html>
