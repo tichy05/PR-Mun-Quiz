@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta charset="UTF-8">
+  <title>Quiz Municipios de Puerto Rico</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin: 0; 
+    background-color: #ffbf00; }
+  img { width: 50%; height:auto; } 
+ 
+    #buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: minmax(40px, auto);
+  gap: 10px;
+  max-width:  600px;
+  max-height: 660px;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+
+    .object-btn {
+      background-color: rgb(32, 32, 237);
+      color: white;
+      font-size: 14px;
+      padding: 5px 15px;
+      border-width: 1.5px;
+      border-radius: 0px;
+      margin: 5px;
+      cursor: pointer;
+      flex: 0 1 auto;
+    }
+
+    .object-btn:hover {
+      background-color: #2cb2d3;
+    }
+@media (max-width: 768px) {}
+    
+  </style>
+</head>
+<body>
+  <h1>Oprima el botón para localizar el municipio correspondiente</h1>
+  <img id="objectImage" src="blank.png" alt="Object Image"; width:50%; height:auto>
+  <div id="buttons"></div>
+   <div style="margin-top: 10px;">
+  <button id="prevBtn" class="object-btn">Anterior</button>
+  <button id="nextBtn" class="object-btn">Siguiente</button>
+</div>
+
+
+  <script>
+   const objects = [
+      "Adjuntas","Aguada","Aguadilla","Aguas Buenas","Aibonito","Arecibo","Arroyo","Añasco",
+      "Barceloneta","Barranquitas","Bayamón","Cabo Rojo","Caguas","Camuy","Canóvanas","Carolina",
+      "Cataño","Cayey","Ceiba","Ciales","Cidra","Coamo","Comerío","Corozal","Culebra","Dorado",
+"Fajardo","Florida","Guayama","Guayanilla","Guaynabo","Gurabo","Guánica","Hatillo","Hormigueros", "Humacao","Isabela","Jayuya","Juana Díaz","Juncos","Lajas","Lares","Las Marías","Las Piedras",
+      "Loíza","Luquillo","Manatí","Maricao","Maunabo","Mayagüez","Moca","Morovis","Naguabo",
+      "Naranjito","Orocovis","Patillas","Peñuelas","Ponce","Quebradillas","Rincón","Río Grande",
+      "Sabana Grande","Salinas","San Germán","San Juan","San Lorenzo","San Sebastián","Santa Isabel","Toa Alta","Toa Baja","Trujillo Alto","Utuado","Vega Alta","Vega Baja","Vieques","Villalba","Yabucoa","Yauco"
+
+    ]; 
+
+
+ 
+ 
+  const buttonsDiv = document.getElementById('buttons');
+  const image = document.getElementById('objectImage');
+  const nextBtn = document.getElementById('nextBtn');
+  const prevBtn = document.getElementById('prevBtn');
+
+  let currentPage = 0;
+  const buttonsPerPage = 25;
+
+  function loadButtons() {
+    buttonsDiv.innerHTML = ''; // Clear previous buttons
+    const start = currentPage * buttonsPerPage;
+    const end = Math.min(start + buttonsPerPage, objects.length);
+    const pageObjects = objects.slice(start, end);
+
+    pageObjects.forEach(obj => {
+      const btn = document.createElement('button');
+      btn.textContent = obj;
+      btn.className = 'object-btn';
+      btn.onclick = () => {
+        image.src = obj + '.png';
+      };
+      buttonsDiv.appendChild(btn);
+    });
+
+    // Show/hide navigation buttons as needed
+    prevBtn.style.display = currentPage > 0 ? 'inline-block' : 'none';
+    nextBtn.style.display = end < objects.length ? 'inline-block' : 'none';
+  }
+
+  nextBtn.onclick = () => {
+    currentPage++;
+    loadButtons();
+  };
+
+  prevBtn.onclick = () => {
+    currentPage--;
+    loadButtons();
+  };
+
+  loadButtons(); // Initial load
+</script>
+
+</script>
+
+  </script>
+</body>
+</html>
+
