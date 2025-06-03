@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <title>Quiz Municipios de Puerto Rico</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin: 0; font-size: 8pt;
+    body { font-family: Arial, sans-serif; text-align: center; margin: 0; font-size: 12px;
     background-color: #ffbf00; }
   img { width: 50%; height:auto; } 
  
@@ -41,11 +41,34 @@
     .object-btn:hover {
       background-color: #2cb2d3;
     }
-@media (max-width: 768px) {}
-    
+ 
+
+ @media only screen and (min-width: 600px) {
+  
+#rotateWarning {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: #000000cc;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  padding-top: 40vh;
+  z-index: 9999;}
+}
+
+ @media only screen and (min-width: 6000px) {
+   #buttons {
+       grid-template-columns: repeat(4, 1fr);}  
+
+  body {font-size: 8px}  
+ 
+ }
   </style>
 </head>
 <body>
+  <div id="rotateWarning">Por favor, gire su dispositivo a modo horizontal (landscape).</div>
   <h1>Oprima el botón para localizar el municipio correspondiente</h1>
   <img id="objectImage" src="blank.png" alt="Object Image"; width:50%; height:auto>
   <div id="buttons"></div>
@@ -76,7 +99,8 @@
   const prevBtn = document.getElementById('prevBtn');
 
   let currentPage = 0;
-  const buttonsPerPage = 20;
+
+  const buttonsPerPage = 15; 
 
   function loadButtons() {
     buttonsDiv.innerHTML = ''; // Clear previous buttons
@@ -110,6 +134,18 @@
   };
 
   loadButtons(); // Initial load
+
+function checkOrientation() {
+ const warning = document.getElementById('rotateWarning');
+ const isPortrait = window.matchMedia("(orientation: landscape)").matches;
+    
+  warning.style.display = isPortrait ? 'none' : 'block'; 
+ } 
+window.addEventListener('resize', checkOrientation);
+window.addEventListener('load', checkOrientation);
+window.addEventListener('orientationchange', () => {setTimeout(checkOrientation, 300); 
+});  
+
 </script>
 
 </script>
