@@ -5,12 +5,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz Municipios PR - Mapa Interactivo</title>
+
  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script> 
   <style>
     
-      body { font-family: Arial, sans-serif; text-align: center;  
-    background-color: white; margin-top: 20px; color: black; 
-    font-size: 12pt; font-style: heavy }
+    body { font-family: Arial, 
+      sans-serif; 
+      text-align: center;  
+      background-color: white(35, 223, 201); 
+      margin-top: 20px; 
+      color: black; 
+      font-size: 12pt; 
+      font-style: heavy }
 ;
     
 
@@ -20,63 +26,87 @@
       height: auto;
       margin: auto;
       display: block;
+      
     }
+ /*
 
-    #options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      max-width: 768px;
-      margin: 5px auto;
-    }
-
-    #options button {
-      flex: 1 1 20%;
-      padding: 5px;
-      font-size: 12pt;
-      cursor: pointer;
-      background-color: #ffbf00;
-      color: black;
-      font-weight: bold;
-      border-radius: 24px;
-    }
-
-    .correct {
-      background-color: #4CAF50 !important;
-    }
-
-    .wrong {
-      background-color: #f44336 !important;
-    }
-
-    
-    
-
-nav.main-nav {
-      background-color: #333;
+.main-nav {
+      background-color: black;
+      color: white;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       border-radius: 0px;
-      margin: 1rem auto;
+      margin: 3px 3px;
       max-width: 1500px;
-      padding: 0.5rem;
+      padding: 0rem;
+      max-height: 30px;
+      font-size: 12pt;
+      flex: 0 0 auto;
+      text-align: center;
+      gap: 15px;
+      cursor: pointer
+
     }
 
-    nav.main-nav a {
+
+    .main-nav a {
+      margin: 0 10px;
+      font-size: 14pt;
+      font-weight: bold;
       color: white;
-      padding: 0.25rem 1rem; 
       text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0px;
+      background-color: black;
+      transition: background-color 0.3s;
       flex: 0 1 auto;
       text-align: center;
-      border-radius: 6px;
-      transition: background-color 0.3s;
-    }
+      
 
-    nav.main-nav a:hover,
-    nav.main-nav a:active {
+    }
+    .main-nav a:hover {
       background-color: #555;
     }
+
+  */
+
+  .main-nav {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 0px;
+  margin: 0;
+  max-width: 1500px;
+  padding: 0.3rem 0.3rem;
+  max-height: 30px;
+  font-size: 12pt;
+  flex: 0 0 auto;
+  text-align: center;
+  gap: 0px;
+  cursor: pointer;
+}
+.main-nav button {
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 0;
+  gap: 0px;
+  padding: 0.5rem 0.5rem;
+  font-size: 12pt;
+ 
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  transition: background-color 0.3s;
+}
+.main-nav button:hover {
+  background: #555;
+}
+
+
 
   #card-container {
       display: flex;
@@ -108,6 +138,30 @@ nav.main-nav {
   font-weight: bold;
 
    }
+.hi-red {
+    color: rgb(192, 17, 17);
+    font-weight: bold;
+  }
+
+
+ #message {
+    display:inline-block; 
+    position:fixed; top:58%; left:0; width:100%;
+    text-align: center; font-size:16pt;
+     z-index:9999;
+  ;
+
+   }
+#message2 {
+    display:inline-block; 
+    position:fixed; top:30%; left:0; width:100%;
+    text-align: center; font-size:18pt;
+     z-index:9999;
+  ;
+
+   }
+
+
     @media only screen and (min-width: 600px)
 {#rotateWarning {
   display: none;
@@ -130,7 +184,7 @@ nav.main-nav {
 </head>
 <body>
 <div id="rotateWarning">Por favor, gire su dispositivo a modo horizontal (landscape)</div>
-<h1 id="card-container">¿Qué municipio está resaltado en el mapa? Región Oeste</h1>
+<h1 id="card-container">Municipios de PR: Región Metro - Herramienta de memoria</h1>
 
 
 
@@ -197,7 +251,7 @@ nav.main-nav {
 <path id="Dorado" d="M 553.0313 242.1111 L 556.2535 243.1384 L 569.1419 239.3092 L 584.0618 244.0724 L 587.0737 241.7375 L 585.7429 244.2592 L 581.4 244.2592 L 576.9171 247.4346 L 576.4267 248.7421 L 574.6055 247.2478 L 571.0332 248.3685 L 569.1419 247.2478 L 568.8618 250.9836 L 569.9124 251.5439 L 569.282 254.3458 L 567.3908 255.7467 L 568.0212 259.3891 L 569.3521 258.8287 L 569.3521 264.4324 L 570.753 265.4598 L 569.282 267.3277 L 567.5309 267.3277 L 565.4295 268.5418 L 563.8184 267.9814 L 562.3475 268.7286 L 560.3862 267.9814 L 556.3235 268.4484 L 556.2535 260.3231 L 557.4442 257.5212 L 556.8138 253.5986 L 554.9226 253.5986 L 552.471 248.4619 L 553.0313 242.1111 Z" fill="#8cd5f7" fill-opacity="1" stroke="#000000" stroke-width="0.33333332008785727" paint-order="fill" stroke-opacity="1" stroke-dasharray="" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" transform="matrix(1.2000000476837158,0,0,1.2000000476837158,-95,-63.29997253417969)" clip-path="none"/>
 <path id="Santa Isabel" d="M 546.8673 391.8229 L 544.906 391.9163 L 538.3217 393.5974 L 530.2664 399.2011 L 524.5226 398.4539 L 519.059 394.1578 L 514.506 388.8343 L 517.9383 384.8183 L 518.7088 385.6588 L 519.129 382.1098 L 521.3705 380.5221 L 523.2618 377.4401 L 521.5806 372.3968 L 521.5806 370.6223 L 530.5465 372.3034 L 532.5779 371.3694 L 537.0608 373.6109 L 541.4037 372.3968 L 543.9954 375.6656 L 547.3576 376.5996 L 548.6184 378.5608 L 546.3069 384.4447 L 545.4664 385.1919 L 546.8673 391.8229 Z" fill="#ffe630" fill-opacity="1" stroke="#000000" stroke-width="0.33333332008785727" paint-order="fill" stroke-opacity="1" stroke-dasharray="" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" transform="matrix(1.2000000476837158,0,0,1.2000000476837158,-95,-63.29997253417969)" clip-path="none"/>
 <path id="Salinas" d="M 583.9217 397.053 L 582.7309 396.2125 L 577.2673 401.1624 L 574.0452 402.0963 L 570.0525 401.069 L 562.2774 400.3218 L 559.5456 399.5747 L 555.553 394.2512 L 552.0507 392.1965 L 546.8673 391.8229 L 545.4664 385.1919 L 546.3069 384.4447 L 548.6184 378.5608 L 550.1594 377.9071 L 552.1207 374.4515 L 553.1714 374.4515 L 554.082 371.2761 L 553.7318 370.0619 L 556.3936 368.194 L 558.1447 366.2327 L 561.7171 365.4856 L 563.5383 362.5903 L 566.5502 362.5903 L 569.4221 360.629 L 573.765 360.2555 L 574.3253 355.4923 L 578.7383 354.8386 L 580.4894 355.6791 L 581.2599 359.6017 L 583.9917 363.1507 L 585.1825 363.1507 L 585.2525 365.9525 L 584.2719 368.1006 L 585.1124 369.5016 L 586.5134 368.7544 L 593.588 367.2601 L 595.2691 368.3808 L 592.8175 373.5175 L 591.0664 374.7317 L 591.2065 375.8524 L 585.6028 377.7203 L 584.1318 379.4948 L 583.9217 397.053 Z" fill="#ffe630" fill-opacity="1" stroke="#000000" stroke-width="0.33333332008785727" paint-order="fill" stroke-opacity="1" stroke-dasharray="" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" transform="matrix(1.2000000476837158,0,0,1.2000000476837158,-95,-63.29997253417969)" clip-path="none"/>
-<path id="Aguadilla" d="M 313.894 257.9882 L 315.1548 257.0542 L 315.5751 250.4232 L 312.5631 245.1931 L 312.283 237.5347 L 317.4664 230.7169 L 330.9152 226.7943 L 331.0553 229.2226 L 333.1567 230.4367 L 333.2267 231.6509 L 334.9779 232.4914 L 336.9392 234.8263 L 336.8691 236.6008 L 338.4101 236.7876 L 343.6636 239.496 L 343.5936 242.8582 L 344.224 245.1931 L 339.2507 246.4072 L 338.4101 249.5827 L 336.5889 249.9562 L 333.8571 252.4779 L 332.2461 252.2911 L 324.6811 260.6032 L 325.1714 262.0042 L 322.7899 266.4871 L 321.8092 267.5145 L 319.4277 265.4598 L 316.6959 264.806 L 315.5051 262.0042 L 315.9254 259.5759 L 313.894 257.9882 Z" fill="#f4f4f4" fill-opacity="1" stroke="#000000" stroke-width="0.33333332008785727" paint-order="fill" stroke-opacity="1" stroke-dasharray="" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" transform="matrix(1.2000000476837158,0,0,1.2000000476837158,-95,-63.29997253417969)" clip-path="none"/>
+<path id="Aguadilla" d="M 313.894 257.9882 L 315.1548 257.0542 L 315.5751 250.4232 L 312.5631 245.1931 L 312.283 237.5347 L 317.4664 230.7169 L 330.9152 226.7943 L 331.0553 229.2226 L 333.1567 230.4367 L 333.2267 231.6509 L 334.9779 232.4914 L 336.9392 234.8263 L 336.8691 236.6008 L 338.4101 236.7876 L 343.6636 239.496 L 343.5936 242.8582 L 344.224 245.1931 L 339.2507 246.4072 L 338.4101 249.5827 L 336.5889 249.9562 L 333.8571 252.4779 L 332.2461 252.2911 L 324.6811 260.6032 L 325.1714 262.0042 L 322.7899 266.4871 L 321.8092 267.5145 L 319.4277 265.4598 L 316.6959 264.806 L 315.5051 262.0042 L 315.9254 259.5759 L 313.894 257.9882 Z" fill="#f4c0c7" fill-opacity="1" stroke="#000000" stroke-width="0.33333332008785727" paint-order="fill" stroke-opacity="1" stroke-dasharray="" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" transform="matrix(1.2000000476837158,0,0,1.2000000476837158,-95,-63.29997253417969)" clip-path="none"/>
 <path id="Peñuelas" d="M 444.53 390.7956 L 437.3853 387.9937 L 425.8277 387.9937 L 426.0378 384.1645 L 429.1198 383.6042 L 430.8009 380.0552 L 434.5834 379.1212 L 435.1438 378.0939 L 432.6922 374.1713 L 434.2332 370.6223 L 433.3226 369.128 L 431.7115 369.9685 L 429.33 368.4742 L 428.9097 366.4195 L 427.6489 367.8204 L 426.0378 371.6496 L 424.847 365.6724 L 425.6175 364.5516 L 424.9871 362.2168 L 425.8977 358.7612 L 424.777 356.9867 L 426.1078 353.3443 L 425.8977 351.383 L 427.2986 349.8886 L 425.1272 345.1255 L 424.9871 342.884 L 427.859 344.7519 L 430.5207 349.3283 L 433.3226 348.1141 L 435.494 349.7953 L 436.7548 349.5151 L 437.4553 346.9 L 440.6774 343.818 L 441.6581 345.0321 L 446.2111 344.285 L 448.8728 347.834 L 448.8728 349.7953 L 450.3438 352.0367 L 450.3438 355.0254 L 451.0442 356.0527 L 449.9235 361.0026 L 447.9622 367.3535 L 448.5926 369.128 L 447.4719 371.2761 L 447.4719 374.4515 L 448.3124 378.2807 L 447.2618 382.2032 L 448.1724 385.939 L 446.3512 388.3673 L 444.9502 388.8343 L 444.53 390.7956 Z" fill="#ffe630" fill-opacity="1" stroke="#000000" stroke-width="0.33333332008785727" paint-order="fill" stroke-opacity="1" stroke-dasharray="" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" transform="matrix(1.2000000476837158,0,0,1.2000000476837158,-95,-63.29997253417969)" clip-path="none"/>
 <path id="Rincón" d="M 296.4525 293.9452 L 293.1604 293.1046 L 288.7475 284.3255 L 285.9456 280.0294 L 283.7042 274.6125 L 284.2645 272.4644 L 292.53 270.0361 L 293.6507 272.6512 L 295.7521 273.8653 L 296.9429 277.5077 L 296.1023 277.7879 L 297.9936 280.4029 L 300.5152 282.1774 L 304.8581 284.1387 L 304.5078 285.4463 L 306.5392 286.2868 L 307.73 289.2754 L 308.4304 289.2754 L 304.718 290.9565 L 303.7373 290.116 L 301.2857 291.3301 L 297.7134 291.4235 L 296.4525 293.9452 Z" fill="#f4c0c7" fill-opacity="1" stroke="#000000" stroke-width="0.33333332008785727" paint-order="fill" stroke-opacity="1" stroke-dasharray="" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" transform="matrix(1.2000000476837158,0,0,1.2000000476837158,-95,-63.29997253417969)" clip-path="none"/>
 <path id="Vega Baja" d="M 518.2184 239.5894 L 534.1189 236.3206 L 543.365 239.2158 L 543.7152 249.3959 L 542.3843 254.626 L 543.8553 255.0929 L 540.7733 257.4278 L 540.423 261.6306 L 539.1622 267.3277 L 537.6912 269.1956 L 535.9401 277.1341 L 535.6599 280.4029 L 533.1383 280.2161 L 531.9475 275.3596 L 530.5465 272.6512 L 528.9355 273.3049 L 528.8654 274.5191 L 522.9816 270.3163 L 521.2304 272.4644 L 516.8175 272.371 L 516.3972 269.5691 L 515.3465 267.5145 L 518.0783 260.6032 L 517.7982 254.7194 L 518.2885 251.077 L 517.9383 248.0883 L 518.2184 239.5894 Z" fill="#8cd5f7" fill-opacity="1" stroke="#000000" stroke-width="0.33333332008785727" paint-order="fill" stroke-opacity="1" stroke-dasharray="" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" transform="matrix(1.2000000476837158,0,0,1.2000000476837158,-95,-63.29997253417969)" clip-path="none"/>
@@ -217,38 +271,36 @@ nav.main-nav {
 <path id="Villalba" d="M 494.753 337.9341 L 497.1346 336.8134 L 500.1465 334.0115 L 504.2092 333.7314 L 508.6221 331.8635 L 509.3226 330.089 L 512.8249 330.5559 L 514.0157 329.9956 L 516.6074 330.5559 L 519.4092 331.4899 L 520.8101 333.5446 L 520.8802 336.4398 L 523.5419 339.4284 L 523.8922 341.5765 L 522.2811 343.9114 L 521.6507 347.7406 L 520.6 348.5811 L 521.6507 352.8773 L 523.1217 353.9046 L 520.9502 356.1461 L 520.6 358.8545 L 518.0083 357.9206 L 513.7355 359.0413 L 505.33 356.6131 L 504.4194 355.2122 L 500.9871 354.6518 L 499.376 355.8659 L 500.2866 357.9206 L 498.8157 359.1347 L 495.9438 358.014 L 495.0332 355.4923 L 492.8618 353.2509 L 493.4922 347.5538 L 494.4028 346.8066 L 492.9318 344.0982 L 493.3521 341.3897 L 494.753 337.9341 Z" fill="#ffe630" fill-opacity="1" stroke="#000000" stroke-width="0.33333332008785727" paint-order="fill" stroke-opacity="1" stroke-dasharray="" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" transform="matrix(1.2000000476837158,0,0,1.2000000476837158,-95,-63.29997253417969)" clip-path="none"/>
 <path d="M -5 -5 L 5 -5 L 5 5 L -5 5 L -5 -5 Z" fill="none" fill-opacity="1" stroke="#ccc" stroke-width="0" paint-order="fill" stroke-opacity="1" stroke-dasharray="" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" transform="matrix(1,0,0,1,945,316.5)" clip-path="none"/>
 <path fill="rgba(255,255,255,0)" fill-opacity="0" stroke="#ccc" stroke-width="0" paint-order="fill" stroke-opacity="1" stroke-dasharray="" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" transform="matrix(1,0,0,1,15,10)" clip-path="none"/><defs><filter id="f1" x="-100%" y="-100%" width="1000%" height="1000%"><feOffset result="offOut" in="SourceGraphic" dx="-9.799999999999999" dy="9.799999999999999"></feOffset><feColorMatrix result="matrixOut" in="offOut" type="matrix" values="0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0"></feColorMatrix><feGaussianBlur result="blurOut" in="matrixOut" stdDeviation="8"></feGaussianBlur><feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend></filter></defs>
-<text x="800" y="430.33333333333" font-size="11">Created with paintmaps.com</text>
+<text x="900" y="440.33333333333" font-size="11">Created with paintmaps.com</text>
 </svg>
-   
-  
+<div id="message" class="message">
 </div>
-
-
-<div id="options">
-  <button onclick="checkAnswer(this)"></button>
-  <button onclick="checkAnswer(this)"></button>
-  <button onclick="checkAnswer(this)"></button>
-  <button onclick="checkAnswer(this)"></button>
-</div>
-
-
-  <div id="score">Correctos: 0 | Total: 0</div>
-
 
 <script>
-  const Regmunicipios = [
+ var REGION = "Metro";
+  document.addEventListener('DOMContentLoaded', function() {
+ // Municipios a presentar
+ 
+ const Regmunicipios = [
 
   
+	  
+     
+      "Cataño",
+      "Bayamón",
+      "Guaynabo",
+      "San Juan",
+      "Carolina",
+      "Aguas Buenas",
+      "Caguas",
+      "Gurabo",
+      "Trujillo Alto",
+      ""
 
-     "Aguada","Aguadilla",
-      "Cabo Rojo","Añasco",
-     "Guánica","Hormigueros",
-      "Isabela","Lajas","Lares","Las Marías",
-     "Mayagüez","Moca","Maricao",
-     "Quebradillas","Rincón","Yauco",
-      "San Germán","San Sebastián","Sabana Grande"
-]
+];
  
+//Todos los municipios, para iniciar en blanco
+
 const municipios = [
 
 
@@ -263,156 +315,87 @@ const municipios = [
     "Toa Alta", "Toa Baja", "Trujillo Alto", "Utuado", "Vega Alta", "Vega Baja", "Vieques", "Villalba",
     "Yabucoa", "Yauco"  
   ];
+
+
+// versos con el cambio de municipios
+    
+const mymessage =  [
+
+      
+       "En la punta de la bahía está el pequeño <span class='hi-red'>Cataño</span>",
+      "y debajo <span class='hi-red'>Bayamón</span>;",
+      "le siguen <span class='hi-red'>Guaynabo</span>",
+      "y <span class='hi-red'>San Juan</span>",
+      "y <span class='hi-red'>Carolina</span> cierra el portón.",
+      "Mas abajo tomarás <span class='hi-red'>Aguas Buenas</span>",
+      "y más buenas <span class='hi-red'>Caguas</span> no hay",
+      "Con <span class='hi-red'>Gurabo</span> ya casi terminamos",
+      "solo falta <span class='hi-red'>Trujillo Alto</span> en el centro",
+      "Esa es la Región Metro"      
+      
+
+    ];
+
   const correct = 0;
   const svg = document.getElementById("map");
-  const buttons = [...document.querySelectorAll("#options button")];
-  const scoreDisplay = document.getElementById("score");
+  let intervalId = null;
+  let myspeed = 4500;
   const colors = {}; 
   const originalColors = {};  // Store original colors
   let currentIndex = 0;
   let correctCount = 0;
-  const shuffledMunicipios = shuffle([...Regmunicipios]);
- 
+  let running = false;
+  const AllMunicipios = ([...Regmunicipios]);
+
+
+
   // Save original fill colors and reset to #f4f4f4
   municipios.forEach(m => {
-  const el = document.getElementById(m);  // fixed
+  const el = document.getElementById(m);  
+  let colors = originalColors;
   if (el) {
-    colors[m] = el.getAttribute("fill") || "#cccccc";  // default fallback
-    el.setAttribute("fill", "#f4f4f4");
+    originalColors[m] = el.getAttribute("fill") || "#cccccc";  // default fallback
+    el.setAttribute("fill", "#d9d7d7");
+
+   
   }
 });
+  ;
+
+
+  message.innerHTML = "Oprima Iniciar cuando este list@";
 
 
 
-  function shuffle(arr) {
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  }
-
-  function nextQuestion() {
-  if (currentIndex >= shuffledMunicipios.length) return;  
-
-    const correct = shuffledMunicipios[currentIndex];
-    municipios.forEach(m => {
-  const el = document.getElementById(m);  // fixed
-  if (el) {
-    colors[m] = el.getAttribute("fill") || "#cccccc";  // default fallback
-    el.setAttribute("fill", "#f4f4f4");
-  }
-});
-
-
-    const el = document.getElementById(correct);  // fixed
-if (el) el.setAttribute("fill", "#8B0000");       // red wine color
-
-
-    const incorrect = shuffle(Regmunicipios.filter(m => m !== correct)).slice(0, 3);
-    const options = shuffle([correct, ...incorrect]);
-
-    buttons.forEach((btn, i) => {
-      btn.textContent = options[i];
-      btn.disabled = false;
-      btn.className = "";
-    });
-
-    scoreDisplay.textContent = `Correctos: ${correctCount} | Total: ${currentIndex}`;
-  }
-
-  function checkAnswer(button) {
-  const selected = button.textContent;
-  const correct = shuffledMunicipios[currentIndex];
-  const correctBtn = buttons.find(btn => btn.textContent === correct);
-
-  if (selected === correct) {
-    button.classList.add("correct");
-    correctCount++;
-  } else {
-    button.classList.add("wrong");
-    correctBtn.classList.add("correct");
-  }
-
-  buttons.forEach(btn => btn.disabled = true);
-  scoreDisplay.textContent = `Correctos: ${correctCount} | Total: ${currentIndex + 1}`;
-
-  setTimeout(() => {
-    const el = document.getElementById(correct);
-    if (el) el.setAttribute("fill", colors[correct]);
-
-    currentIndex++;
-
-    // 🔥 Trigger confetti only after the last question AND a perfect score
-    if (currentIndex === shuffledMunicipios.length && correctCount === shuffledMunicipios.length) {
-      confettiExplosion(); 
-    }
-    if (currentIndex === shuffledMunicipios.length && correctCount < shuffledMunicipios.length) {
-      tryAgainmsg();
-    }
-    nextQuestion();
-  }, 1000);
-}
  /* nextQuestion(); */
 
-function confettiExplosion() {
-  const duration = 5 * 1000;
-  const end = Date.now() + duration;
 
-  (function frame() {
-    confetti({
-      particleCount: 5,
-      angle: 60,
-      spread: 55,
-      origin: { x: 0 }
-    });
-    confetti({
-      particleCount: 5,
-      angle: 120,
-      spread: 55,
-      origin: { x: 1 }
-    });
-
-    if (Date.now() < end) {
-      requestAnimationFrame(frame);
-    }
-  })();
-
-  // Optional: show message
-  const msg = document.createElement('div');
-  msg.id = "victoryMessage";
-  msg.style.cssText = `
-    position:fixed; top:30%; left:0; width:100%;
-    text-align:center; font-size:3em; font-weight:bold;
-    color:black; text-shadow: 2px 2px #000; z-index:9999;
-  `;
-  msg.textContent = "¡Weepaaaa!! ¡Perfecto! 🎉 ";
-  document.body.appendChild(msg);
-
+function nextQuestion() {
+ 
+ if (currentIndex >= Regmunicipios.length) {
+    running = false;
+    return;
+ }
+ // Highlight the correct municipio
+  const correct = Regmunicipios[currentIndex];
+  const el = document.getElementById(correct);
+  if (el) el.setAttribute("fill", "#8B0000");
+  messageShow();
+    
   setTimeout(() => {
-    msg.remove();
-  }, 4000);
+    // Reset color
+    if (el) el.setAttribute("fill", originalColors[correct]);
+    currentIndex++;
+    if (running) nextQuestion();
+  }, myspeed);
 }
 
-nextQuestion();
 
-function tryAgainmsg() {
-const msg2 = document.createElement('div');
-  msg2.id = "TryAgain";
-  msg2.style.cssText = `
-    position:fixed; top:30%; left:0; width:100%;
-    text-align:center; font-size:3em; font-weight:bold;
-    color:black; text-shadow: 2px 2px #000; z-index:9999;
-  `;
-  msg2.textContent = "Trate de nuevo o vaya a Aprendizajes ";
-  document.body.appendChild(msg2);
 
-  setTimeout(() => {
-    msg2.remove();
-  }, 4000);
+function messageShow() {
+  message.innerHTML = mymessage[currentIndex];
 }
 
-nextQuestion();
 
 function checkOrientation() {
  const warning = document.getElementById('rotateWarning');
@@ -431,23 +414,76 @@ function goBack() {
   
 
 
+function startSlideshow() {
+  if (running) return;
+  running = true;
+  nextQuestion();
+}
+  
+function stopSlideshow() {
+  running = false;
+}
+
+
+
+/* function resetSlideshowWithSpeed(speed) {
+  myspeed = speed;
+  if (running) {
+    stopSlideshow();
+    currentIndex = 0; 
+    startSlideshow();
+  }
+}
+
+function gotosetspeed1() { resetSlideshowWithSpeed(4500); }
+function gotosetspeed2() { resetSlideshowWithSpeed(4000); }
+function gotosetspeed3() { resetSlideshowWithSpeed(3500); }
+*/
+/*startBtn.addEventListener('click', startSlideshow);
+stopBtn.addEventListener('click', stopSlideshow);*/
+
+window.startSlideshow = startSlideshow;
+window.stopSlideshow = stopSlideshow;
+/*window.replaySlideshow = replaySlideshow;*/
+window.goBack = goBack;
+
+
+/*window.gotosetspeed1 = gotosetspeed1;
+window.gotosetspeed2 = gotosetspeed2;
+window.gotosetspeed3 = gotosetspeed3;*/
+
+
+
+
+
+});
 
 </script>
 
-<nav class="main-nav">
-    <a href="Muni Main Menu.html">Inicio</a>
-    <a href="QuizMenu.html">Menu Pruebas</a>
-    <a href="javascript:goBack()">&laquo; Anterior</a>
-    <a href="">Reintentar</a>
-
   
-  </nav>
+<nav class="main-nav"> 
+    
+    <button type=button class="main-nav" onclick="startSlideshow()">Iniciar</button>
+    <button type=button class="main-nav" onclick="stopSlideshow()">Pausar</button>
+    <button type=button class="main-nav" onclick="startSlideshow()">Continuar</button>
+    <button type=button class="main-nav" onclick="window.location.href='Muni PP Image Region ' + REGION + '.html'">Repetir</button>
+    
+    <button type=button class="main-nav" onclick="window.location.href='Muni Main Menu.html'">Menu Inicio</button>
+    <button type=button class="main-nav" onclick="window.location.href='QuizMenu.html'">Menu Pruebas</button>
+    <button type=button class="main-nav" onclick="goBack()">&laquo; Anterior</button>
+   
+</nav>
+
+
+
+
 
   <footer>
     &copy; 2025 JCFP
   
   </footer>
- 
+
+
+
 </body>
 </html>
-

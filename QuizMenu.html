@@ -1,57 +1,231 @@
-<!DOCTYPE html> 
-<html lang="en"> 
+<!DOCTYPE html>
+<html lang="en">
 <head>
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta charset="UTF-8"> 
-  <title>HTML Grid Menu Index</title> 
-  <style> 
-    body  { 
-      font-family: Arial, sans-serif; 
-      padding: 40px; 
-      background-color: #ffbf00;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Municipios de PR Quiz Menu</title>
+  <style>
+    
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      line-height: 1.5;
+      background-color: #f4f4f4;
       background-image: url('Bandera.png');
       background-size: cover;
-     } 
-    .grid-menu  { 
-      display: grid;
+    }
+
+    header, footer {
+      background-color: #ffbf00;
+      color: black;
+      text-align: center;
+      padding: 0rem     
       
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
-      gap: 20px; 
-      max-width: 400px; 
-      margin: 150px auto; /* Buttons origin */
-     } 
-    .grid-menu button  { 
-      padding: 20px; 
-      background-color: #2935b9; 
-      color: white; 
-      border: none; 
-      border-radius: 0px; 
-      font-size: 16px; 
-      cursor: pointer; 
-      transition: background-color 0.3s ease; 
-     } 
-    .grid-menu button:hover  { 
-      background-color: #2980b9; 
-     } 
-  </style> 
-</head> 
-<body> 
  
-  <h2 style="text-align:center;color:white">Pruebas de ubicación geofráfica de los municipios de Puerto Rico
-  </h2> 
+
+    }
+
+    main {
+      padding: 1rem 2vw;
+      max-width: 1000px;
+    /*  margin-top: 1rem;
+      margin-left: 1rem; */
+      margin: 1rem auto;
+      
  
-  <div class="grid-menu"> 
-    <button onclick="location.href='QuizPRTodoPR.html'">Quiz Todo PR</button> 
-    <button onclick="location.href='QuizPRRegionMetro.html'">Quiz Región Metro</button> 
-    <button onclick="location.href='QuizPRRegionNorte.html'">Quiz Región Norte</button> 
-    <button onclick="location.href='QuizPRRegionSur.html'">Quiz Región Sur</button>
-    <button onclick="location.href='QuizPRRegionEste.html'">Quiz Región Este</button>  
-    <button onclick="location.href='QuizPRRegionOeste.html'">Quiz Región Oeste</button> 
-    <button onclick="location.href='QuizPRRegionCentral.html'">Quiz Región Central</button> 
+      background-color: white;
+      border-radius: 12px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 0.25rem;
+      
+      
+    }
+
+    .card {
+      background:  #ffbf00;
+      padding: 1rem 0.5rem;
+      border-radius: 12px;
+      flex: 1 1 180px;
+      max-width: 120px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: transform 0.2s ease-in-out;
+   /*   background-image: url('Bandera.png'); 
+      color: white; */
+   /*   background-color:rgb(186, 19, 19); */
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .card h3 {
+      margin-top: 0px;
+      text-align: center;
+    }
+
+    .card p {
+      margin-bottom: 1rem;
+    }
+
+    .card a {
+      background-color: white;
+      color: black;
+      padding: 0.25rem;
+      border-radius: 24px;
+      border-color: black;
+      border-width: 2px;
+      border-style: solid;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 9pt;
+      display: block;
+      justify-content: fixed;
+      transition: background-color 0.3s ease;
+    }
+
+    .card a:hover,
+    .card a:active {
+      background-color: #0056b3;
+    }
+
+    nav.main-nav {
+      background-color: #333;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      border-radius: 0px;
+      margin: 1rem auto;
+      max-width: 1000px;
+      padding: 0.5rem;
+    }
+
+    nav.main-nav a {
+      color: white;
+      padding: 0.25rem 1rem;
+      text-decoration: none;
+      flex: 0 1 auto;
+      text-align: center;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    nav.main-nav a:hover,
+    nav.main-nav a:active {
+      background-color: #555;
+    }
+
+    footer {
+      font-size: 0.875rem;
+      padding: 1rem;
+    }
+    header {
+      font-size: 0.7rem;
+      padding: 0.5rem;
+    }
+
+
+    @media (max-width: 768px) {
+     
+      main {
+        max-width: 300px;
+      }
+
+      nav.main-nav {
+        flex-direction: column;
+        align-items: normal;
+      }
+
+      .card {
+        width: 90%;
+        max-width: 250px;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Municipios de Puerto Rico: Pruebas de ubicación geográfica</h1>
+  </header>
+
+  <main>
+    <h2>Pruebas de conocimiento:</h2>
+    <p>Selecciona si quieres probar tus conocimientos por región o todo PR
+    </p>
+
+    <div class="card-container">
+      
+      <div class="card">
+        <h3>Región: Oeste</h3>
+        <a href="QuizPRRegionOeste.html">SELECCIONAR</a>
+      </div>
+      
+      <div class="card">
+        <h3>Región: Norte</h3>
+        <a href="QuizPRRegionNorte.html">SELECCIONAR</a>
+      </div>
+      
+      <div class="card">
+        <h3>Región: Metro</h3>
+        <a href="QuizPRRegionMetro.html">SELECCIONAR</a>
+      </div>
+      
+      <div class="card">
+        <h3>Región: Este</h3>
+        <a href="QuizPRRegionEste.html">SELECCIONAR</a>
+      </div>
+      
+      <div class="card">  
+        <h3>Región: Sur</h3>
+        <a href="QuizPRRegionSur.html">SELECCIONAR</a>
+      </div>
+      
+      <div class="card">
+        <h3>Región: Central</h3>
+        <a href="QuizPRRegionCentral.html">SELECCIONAR</a>
+      </div>
+      <div class="card">
+        <h3>Todo PR</h3>
+        <a href="QuizPRTodoPR.html">SELECCIONAR</a>
+      </div>
+    </div>
+  </main>
+<p></p>
+<script>
+  function goBack() {
+  window.history.back()
+}
+</script>
+
+
+  <nav class="main-nav">
+    <a href="Muni Main Menu.html">Inicio</a>
+    <a href="QuizPRMenu.htmlz">Menu Pruebas</a>
+    <a href="javascript:goBack()">&laquo; Anterior</a>
  
-    <!-- Add more buttons as needed --> 
-  </div> 
  
-</body> 
-</html> 
+  </nav>
+
+  <footer>
+    &copy; 2025 JCFP
+  </footer>
+ 
+</body>
+</html>
