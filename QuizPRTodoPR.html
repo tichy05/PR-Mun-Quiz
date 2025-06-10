@@ -236,6 +236,17 @@ nav.main-nav {
 
 
 <script>
+
+const regiones = {
+  'Oeste': ["Aguada", "Aguadilla", "Guánica", "Moca", "Rincón", "San Sebastián", "Isabela", "Mayagüez", "Hormigueros", "Quebradillas", "Cabo Rojo", "San Germán", "Sabana Grande", "Lajas", "Lares", "Añasco", "Las Marías", "Maricao"],
+  'Norte': ["Arecibo", "Hatillo", "Camuy",  "Barceloneta", "Florida", "Manatí", "Vega Baja", "Vega Alta", "Dorado", "Toa Alta", "Toa Baja"],
+  'Metro': ["San Juan", "Guaynabo", "Carolina", "Trujillo Alto",  "Bayamón", "Gurabo", "Caguas", "Aguas Buenas", "Cataño"],
+  'Este': ["Fajardo", "Luquillo", "Río Grande", "Ceiba", "Naguabo", "Humacao", "Yabucoa", "Maunabo", "Las Piedras", "Juncos", "Vieques", "Culebra", "Loíza", "San Lorenzo", "Canóvanas"],
+  'Sur': ["Ponce", "Juana Díaz", "Santa Isabel", "Salinas", "Guayama", "Arroyo", "Patillas", "Peñuelas", "Villalba", "Guayanilla", "Yauco"],
+  'Centro': ["Adjuntas", "Utuado", "Jayuya", "Ciales", "Orocovis", "Morovis", "Barranquitas", "Comerío", "Aibonito", "Coamo", "Villalba", "Cayey", "Cidra"],
+};
+
+
   const Regmunicipios = [
 
   
@@ -286,6 +297,13 @@ const municipios = [
 });
 
 
+function getRegion(municipio) {    //new function to get region by municipio
+  for (const [region, list] of Object.entries(regiones)) {
+    if (list.includes(municipio)) return region;
+  }
+  return null;
+}
+
 
   function shuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -303,7 +321,7 @@ const municipios = [
   const el = document.getElementById(m);  // fixed
   if (el) {
     colors[m] = el.getAttribute("fill") || "#cccccc";  // default fallback
-    el.setAttribute("fill", "#f4f4f4");
+    el.setAttribute("fill", "#d9d7d7");
   }
 });
 
@@ -312,8 +330,15 @@ const municipios = [
 if (el) el.setAttribute("fill", "#8B0000");       // red wine color
 
 
-    const incorrect = shuffle(Regmunicipios.filter(m => m !== correct)).slice(0, 3);
-    const options = shuffle([correct, ...incorrect]);
+   /* const incorrect = shuffle(Regmunicipios.filter(m => m !== correct)).slice(0, 3); */ //removed 
+   /* const options = shuffle([correct, ...incorrect]); */
+const region = getRegion(correct);  //new line to get region of the correct municipio
+const regionMunicipios = regiones[region].filter(m => m !== correct);
+const incorrect = shuffle(regionMunicipios).slice(0, 3);
+const options = shuffle([correct, ...incorrect]);
+// 
+
+
 
     buttons.forEach((btn, i) => {
       btn.textContent = options[i];
