@@ -242,8 +242,8 @@ const regiones = {
   'Norte': ["Arecibo", "Hatillo", "Camuy",  "Barceloneta", "Florida", "Manatí", "Vega Baja", "Vega Alta", "Dorado", "Toa Alta", "Toa Baja"],
   'Metro': ["San Juan", "Guaynabo", "Carolina", "Trujillo Alto",  "Bayamón", "Gurabo", "Caguas", "Aguas Buenas", "Cataño"],
   'Este': ["Fajardo", "Luquillo", "Río Grande", "Ceiba", "Naguabo", "Humacao", "Yabucoa", "Maunabo", "Las Piedras", "Juncos", "Vieques", "Culebra", "Loíza", "San Lorenzo", "Canóvanas"],
-  'Sur': ["Ponce", "Juana Díaz", "Santa Isabel", "Salinas", "Guayama", "Arroyo", "Patillas", "Peñuelas", "Villalba", "Guayanilla", "Yauco"],
-  'Centro': ["Adjuntas", "Utuado", "Jayuya", "Ciales", "Orocovis", "Morovis", "Barranquitas", "Comerío", "Aibonito", "Coamo", "Villalba", "Cayey", "Cidra"],
+  'Sur': ["Ponce", "Juana Díaz", "Santa Isabel", "Salinas", "Guayama", "Arroyo", "Patillas", "Peñuelas", "Villalba", "Guayanilla", "Coamo", "Yauco"],
+  'Centro': ["Adjuntas", "Utuado", "Jayuya", "Ciales", "Orocovis", "Morovis", "Corozal", "Naranjito", "Barranquitas", "Comerío", "Aibonito", "Cayey", "Cidra"],
 };
 
 
@@ -332,12 +332,28 @@ if (el) el.setAttribute("fill", "#8B0000");       // red wine color
 
    /* const incorrect = shuffle(Regmunicipios.filter(m => m !== correct)).slice(0, 3); */ //removed 
    /* const options = shuffle([correct, ...incorrect]); */
-const region = getRegion(correct);  //new line to get region of the correct municipio
+
+
+/*const region = getRegion(correct);  //new line to get region of the correct municipio
 const regionMunicipios = regiones[region].filter(m => m !== correct);
 const incorrect = shuffle(regionMunicipios).slice(0, 3);
-const options = shuffle([correct, ...incorrect]);
+const options = shuffle([correct, ...incorrect]); */ //6-10-25
 // 
+const region = getRegion(correct);
+let regionMunicipios = regiones[region].filter(m => m !== correct);
+let incorrect = shuffle(regionMunicipios).slice(0, 3);
 
+
+
+if (incorrect.length < 3) {
+  // Get municipios not in options yet and not the correct one
+  const used = new Set([correct, ...incorrect]);
+  const globalPool = Regmunicipios.filter(m => !used.has(m));
+  const needed = 3 - incorrect.length;
+  incorrect = incorrect.concat(shuffle(globalPool).slice(0, needed));
+}
+
+const options = shuffle([correct, ...incorrect]);
 
 
     buttons.forEach((btn, i) => {
