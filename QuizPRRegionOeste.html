@@ -240,14 +240,15 @@ nav.main-nav {
 
   
 
-     "Aguada","Aguadilla",
+    "Aguada","Aguadilla",
       "Cabo Rojo","Añasco",
      "Guánica","Hormigueros",
       "Isabela","Lajas","Lares","Las Marías",
      "Mayagüez","Moca","Maricao",
      "Quebradillas","Rincón",
       "San Germán","San Sebastián","Sabana Grande"
-]
+
+];
  
 const municipios = [
 
@@ -272,7 +273,8 @@ const municipios = [
   let currentIndex = 0;
   let correctCount = 0;
   const shuffledMunicipios = shuffle([...Regmunicipios]);
- 
+   let msgtext = ""; 
+
   // Save original fill colors and reset to #f4f4f4
   municipios.forEach(m => {
   const el = document.getElementById(m);  // fixed
@@ -347,9 +349,30 @@ if (el) el.setAttribute("fill", "#8B0000");       // red wine color
     if (currentIndex === shuffledMunicipios.length && correctCount === shuffledMunicipios.length) {
       confettiExplosion(); 
     }
+
+// new section start
     if (currentIndex === shuffledMunicipios.length && correctCount < shuffledMunicipios.length) {
-      tryAgainmsg();
-    }
+  const percent = correctCount / shuffledMunicipios.length;
+  if (percent >= 0.75) {
+    msgtext = "Trate de nuevo; casi casi lo logra!!";
+    console.log("msg3");
+  } else if (percent >= 0.5) {
+    msgtext = "Sabe, hay sección de Aprendizaje";
+    console.log("msg4");
+  } else if (percent >= 0.25) {
+    msgtext = "Ummmm... ni cerquita...";
+    console.log("msg5");
+  } else {
+    msgtext = "De vuelta a la escuela...";
+    console.log("msg6");
+  }
+  tryAgainmsg();
+}
+   
+
+// new section end
+
+
     nextQuestion();
   }, 1000);
 }
@@ -397,14 +420,15 @@ function confettiExplosion() {
 nextQuestion();
 
 function tryAgainmsg() {
-const msg2 = document.createElement('div');
+const msg2 = document.createElement('div'); 
   msg2.id = "TryAgain";
   msg2.style.cssText = `
     position:fixed; top:30%; left:0; width:100%;
     text-align:center; font-size:3em; font-weight:bold;
     color:black; text-shadow: 2px 2px #000; z-index:9999;
   `;
-  msg2.textContent = "Trate de nuevo o vaya a Aprendizajes ";
+
+  msg2.textContent = msgtext;
   document.body.appendChild(msg2);
 
   setTimeout(() => {
