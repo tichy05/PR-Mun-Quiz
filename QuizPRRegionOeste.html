@@ -351,7 +351,7 @@ if (el) el.setAttribute("fill", "#8B0000");       // red wine color
     }
 
 // new section start
-    if (currentIndex === shuffledMunicipios.length && correctCount < shuffledMunicipios.length) {
+ /*   if (currentIndex === shuffledMunicipios.length && correctCount < shuffledMunicipios.length) {
   const percent = correctCount / shuffledMunicipios.length;
   if (percent >= 0.75) {
     msgtext = "Trate de nuevo; casi casi lo logra!!";
@@ -363,14 +363,61 @@ if (el) el.setAttribute("fill", "#8B0000");       // red wine color
     msgtext = "Ummmm... ni cerquita...";
     console.log("msg5");
   } else {
-    msgtext = "De vuelta a la escuela...";
+    msgtext = "No sé qué decirte...";
     console.log("msg6");
   }
   tryAgainmsg();
 }
    
 
-// new section end
+// new section end */
+
+// new section 6-12-25
+// Define arrays of messages for each percent range
+const msg75 = [
+  "Trate de nuevo; casi casi lo logra!!",
+  "¡Muy cerca! Inténtelo otra vez.",
+  "¡Casi ganador! Siga practicando."
+];
+const msg50 = [
+  "Sabe, hay sección de Aprendizaje",
+  "Puedes mejorar, repasa en Aprenndizaje",
+  "¡Ánimo! solo te falta como el 50%...",
+];
+const msg25 = [
+  "Ummmm... ni cerquita...",
+  "Todavía falta, ¡no te rindas!",
+  "Intenta de nuevo, puedes hacerlo mejor."
+];
+const msg0 = [
+  "No sé qué decirte...",
+  "Ups... ¿vamos a repasar?",
+  "¡Necesitas más práctica!"
+];
+  function getRandomMsg(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+if (currentIndex === shuffledMunicipios.length && correctCount < shuffledMunicipios.length) {
+  const percent = correctCount / shuffledMunicipios.length;
+  if (percent >= 0.75) {
+    msgtext = getRandomMsg(msg75);
+    console.log("msg3");
+  } else if (percent >= 0.5) {
+    msgtext = getRandomMsg(msg50);
+    console.log("msg4");
+  } else if (percent >= 0.25) {
+    msgtext = getRandomMsg(msg25);
+    console.log("msg5");
+  } else {
+    msgtext = getRandomMsg(msg0);
+    console.log("msg6");
+  }
+  tryAgainmsg();
+}
+
+
+// neew section end 6-12-25
 
 
     nextQuestion();
